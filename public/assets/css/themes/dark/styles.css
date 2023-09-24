@@ -1,0 +1,31 @@
+@import "colors.css";
+@import "variables.css";
+@import "buttons.css";
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+:root[theme="dark"] * {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+:root[theme="dark"] body {
+    color: var(--text-color);
+    background: var(--primary-background);
+    font-family: var(--text-font);
+}
+
+:root[theme="dark"] a {
+    color: var(--link-color);
+}
+
+:root[theme="dark"] .header {
+    height: 50vh;
+    width: 100%;
+    background: var(--secondary-background);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}

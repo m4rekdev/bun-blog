@@ -1,0 +1,7 @@
+:root[theme="dark"]  {
+    --text-font: Poppins, sans-serif;
+
+    --button-border-radius: 0.75rem;
+    --button-padding: 1rem 0.5rem;
+    --button-cursor: pointer;
+}

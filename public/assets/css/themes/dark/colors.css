@@ -1,0 +1,17 @@
+:root[theme="dark"] {
+    --primary-color: #0050c8;
+    --secondary-color: #579aff;
+    
+    --text-color: #eee;
+    --link-color: #579aff;
+    --accent-color: #0050c8;
+    
+    --primary-background: #2b2b2b;
+    --secondary-background: #0050c8;
+    --tertiary-background: #579aff;
+
+    --primary-button-color: #0050c8;
+    --primary-button-text-color: #eee;
+    --secondary-button-color: #579aff;
+    --secondary-button-text-color: #eee;
+}
