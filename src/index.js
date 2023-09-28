@@ -3,9 +3,11 @@ import { parse } from "url";
 const htmlHeaders = new Headers();
 htmlHeaders.set('Content-Type', 'text/html;charset=utf-8');
 
+const config = await Bun.file("./config.json").json();
+
 const server = Bun.serve({
-    port: 3000,
-    hostname: "*", //listen on all interfaces
+    port: config.server.port,
+    hostname: config.server.host,
     async fetch(req) {
         let filePath = "./public" + parse(req.url).pathname;
 
@@ -15,16 +17,18 @@ const server = Bun.serve({
         //return index if the path is /
         if (filePath === "./public/") filePath = "./public/index";
 
+        //if the file doesn't have an extension, add .html 
         if (!filePath.substring(1).match(/^.*\.[^\\]+$/)?.length) filePath = filePath + ".html";
 
-        if (filePath.startsWith("./public/errors/")) return await returnError(403);
+        if (filePath.startsWith("./public/errors/")) return await returnError(404);
 
         const file = Bun.file(filePath);
         if (!(await file.exists())) return await returnError(404);
 
+        //if it's an html file, replace the variables with the values in config.json
         if (filePath.match(/^(.(.*\.html))*$/)?.length)
             return new Response(
-                (await file.text()).replaceAll('{blogBunSiteName}', "test"),
+                (await file.text()).replaceAll('{{ siteName }}', config.siteName),
                 { headers: htmlHeaders }
             );
 
@@ -32,7 +36,7 @@ const server = Bun.serve({
     },
 });
 
-console.log(`Listening on localhost:${server.port}`);
+console.log(`Listening on ${server.hostname}:${server.port}`);
 
 
 async function returnError(code) {
@@ -41,6 +45,6 @@ async function returnError(code) {
         return new Response(`Couldn't find the error page. You shouldn't be here. (☉_☉) Anyways, the status code is ${code}.`, { status: 404 });
 
     return new Response(
-        (await errorPage.text()).replaceAll('{blogBunSiteName}', "test"),
+        (await errorPage.text()).replaceAll('{{ siteName }}', config.siteName),
         { headers: htmlHeaders, status: code });
 }

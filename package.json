@@ -7,5 +7,15 @@
   },
   "peerDependencies": {
     "typescript": "^5.0.0"
+  },
+  "scripts": {
+    "start": "bun ./src/index.js",
+    "parsePosts": "bun ./src/parsePosts.js"
+  },
+  "dependencies": {
+    "dompurify": "^3.0.5",
+    "front-matter": "^4.0.2",
+    "jsdom": "^22.1.0",
+    "marked": "^9.0.3"
   }
 }

@@ -1,7 +1,11 @@
 :root[theme="dark"]  {
-    --text-font: Poppins, sans-serif;
+    --text-font: 'Montserrat', sans-serif;
 
     --button-border-radius: 0.75rem;
-    --button-padding: 1rem 0.5rem;
+    --button-padding: 0.75rem 2rem;
+    --button-margin: 0.5rem;
     --button-cursor: pointer;
+
+    --card-padding: 20px;
+    --card-border-radius: 0.75rem;
 }

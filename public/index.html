@@ -1,16 +1,66 @@
 <!DOCTYPE html>
 <html lang="en" theme="dark">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{blogBunSiteName}</title>
-    <link rel="stylesheet" href="/assets/css/styles.css">
-</head>
-<body>
-    <div class="header">
-        <h1>Welcome to {blogBunSiteName}!</h1>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!--  Essential META Tags -->
+    <meta property="og:title" content="{{ siteName }}">
+    <meta property="og:type" content="article" />
+    <meta property="og:image" content="">
+    <meta property="og:url" content="{{ siteHostname }}">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <!--  Non-Essential, But Recommended -->
+    <meta property="og:description" content="{{ siteDescription }}">
+    <meta property="og:site_name" content="{{ siteName }}">
+    <meta name="twitter:image:alt" content="{{ siteName }}">
+
+    <title>{{ siteName }}</title>
+    <link rel="stylesheet" href="/assets/css/styles.css" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  </head>
+  <body>
+    <nav>
+      <a href="/"><h1>{{ siteName }}</h1></a>
+
+      <ul>
+        <li><a href="/rss">RSS</a></li>
+      </ul>
+    </nav>
+
+    <section class="header secondary flex direction-column center text-center">
+        <h1>Welcome to {{ siteName }}!</h1>
         <p>the blog of all time.</p>
-        <a href="http://example.com">Example.com</a>
-    </div>
-</body>
+        <a href="example">example link</a>
+
+        <div class="flex center wrap">
+            <a href="main" class="btn primary">Main Button</a>
+            <a href="secondary" class="btn secondary">Secondary Button</a>
+        </div>
+    </section>
+
+    <section class="flex direction-column center">
+      <h1 class="text-center">Posts</h1>
+      <em class="text-center">my interesting thoughts...</em>
+
+      <div class="blogs">
+        <!-- <p class="text-center" data-aos="fade-up">Loading...</p> -->
+        <a href="#" data-aos="fade-up" class="card flex direction-column center">
+          <img src="https://images.unsplash.com/photo-1695670147761-3406bd9ba64e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" alt="Post Title">
+          <h1>Bluetooth on the Raspberry Pi Pico W</h1>
+          <p>Very nice post.. jk, this is just a dummy text to fill in the space so i can see what it looks like. touch grass pls</p>
+          <div href="#" class="btn primary">Read more</div>
+        </a>
+      </div>
+    </section>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+
+    <script src="/assets/js/navScroll.js"></script>
+    <script src="/assets/js/posts.js"></script>
+  </body>
 </html>

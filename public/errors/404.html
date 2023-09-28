@@ -1,16 +1,37 @@
 <!DOCTYPE html>
 <html lang="en" theme="dark">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Not Found | {blogBunSiteName}</title>
-    <link rel="stylesheet" href="/assets/css/styles.css">
-</head>
-<body>
-    <div class="header">
-        <h1>Not Found</h1>
-        <p>Couldn't find the requested file.</p>
-        <p><a href="/">Home</a> • <a href="#">Go Back</a></p>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!--  Essential META Tags -->
+    <meta property="og:title" content="Not Found | {{ siteName }}">
+    <meta property="og:type" content="article" />
+    <meta property="og:image" content="">
+    <meta property="og:url" content="{{ siteHostname }}">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <!--  Non-Essential, But Recommended -->
+    <meta property="og:description" content="Couldn't find the requested file.">
+    <meta property="og:site_name" content="Not Found | {{ siteName }}">
+    <meta name="twitter:image:alt" content="Not Found | {{ siteName }}">
+
+    <title>Not Found | {{ siteName }}</title>
+    <link rel="stylesheet" href="/assets/css/styles.css" />
+  </head>
+  <body>
+    <nav>
+      <a href="/"><h1>{{ siteName }}</h1></a>
+
+      <ul>
+        <li><a href="/rss">RSS</a></li>
+      </ul>
+    </nav>
+
+    <div class="header flex direction-column center text-center">
+      <h1>Not Found</h1>
+      <p>Couldn't find the requested file.</p>
+      <p><a href="/">Home</a> • <a href="#">Go Back</a></p>
     </div>
-</body>
+  </body>
 </html>
