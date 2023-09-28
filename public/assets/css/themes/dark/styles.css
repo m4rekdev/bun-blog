@@ -165,7 +165,6 @@
 
 :root[theme="dark"] .card img {
     object-fit: cover;
-    aspect-ratio: 16/9;
     width: calc(100% + var(--card-padding) * 2);
     margin-top: calc(var(--card-padding) * -1);
     border-top-left-radius: var(--card-border-radius);

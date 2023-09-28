@@ -171,5 +171,4 @@ dist
 # IntelliJ based IDEs
 .idea
 
-posts/*
 public/posts/*
