@@ -4,13 +4,14 @@ import fs from 'node:fs/promises';
 import DOMPurify from 'dompurify';
 import { JSDOM } from 'jsdom';
 import { marked } from 'marked';
-import path from "node:path";
 const fm = require('front-matter');
 const mdPosts = await fs.readdir('./posts');
 
-for (const file of await fs.readdir('./public/posts')) {
-  await fs.unlink(`./public/posts/${file}`);
-}
+if (await fs.exists('./public/posts'))
+    for (const file of await fs.readdir('./public/posts')) {
+        await fs.unlink(`./public/posts/${file}`);
+    }
+else await fs.mkdir('./public/posts');
 
 const posts = [];
 
@@ -34,6 +35,7 @@ for (const post of posts) {
 
     const postHtml = template
         .replaceAll('{{ postTitle }}', post.title)
+        .replaceAll('{{ postId }}', postId)
         .replaceAll('{{ postCoverImage }}', post?.coverImage || '')
         .replaceAll('{{ postDescription }}', post.description)
         .replaceAll('{{ postAuthor }}', post.author)
