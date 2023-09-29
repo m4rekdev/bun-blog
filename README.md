@@ -31,3 +31,5 @@ bun run parsePosts
 ```bash
 bun run buildStatic
 ```
+
+Now you can use the build folder as the site root.
