@@ -26,7 +26,7 @@ for await (const mdPost of mdPosts) {
 
     if (postMetadata.attributes.draft) continue;
 
-    const window = new JSDOM('').window;
+    const { window } = new JSDOM('');
     const purify = DOMPurify(window);
     const postParsed = purify.sanitize(marked.parse(postMetadata.body));
 
