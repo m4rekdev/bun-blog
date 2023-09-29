@@ -1,6 +1,6 @@
 # bun-blog
 
-A customizable, extendendable and easy-to-use markdown blogging website written in Bun! 🔥
+A customizable, extendable and easy-to-use markdown blogging website written in Bun! 🔥
 
 *Theme support coming soon...*
 
@@ -26,4 +26,8 @@ To parse posts:
 bun run parsePosts
 ```
 
-This project was created using `bun init` in bun v1.0.1. [Bun](https://bun.sh) is a fast all-in-one JavaScript runtime.
+**If you only have access to a static environment (GitHub Pages, CloudFlare Pages, etc.) you can build your static site.**
+
+```bash
+bun run buildStatic
+```

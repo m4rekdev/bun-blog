@@ -134,6 +134,10 @@
     color: var(--contrast-link-color);
 }
 
+:root[theme="dark"] .header.secondary img {
+    max-height: 50vh;
+}
+
 :root[theme="dark"] .blogs {
     display: grid;
     width: 100%;

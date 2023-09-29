@@ -171,4 +171,7 @@ dist
 # IntelliJ based IDEs
 .idea
 
+# project specific
 public/posts/*
+build/*
+bun.lockb

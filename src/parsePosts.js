@@ -4,19 +4,24 @@ import fs from 'node:fs/promises';
 import DOMPurify from 'dompurify';
 import { JSDOM } from 'jsdom';
 import { marked } from 'marked';
+import { join, relative, dirname } from 'path';
+import walk from './utils/walk.js';
 const fm = require('front-matter');
-const mdPosts = await fs.readdir('./posts');
 
-if (await fs.exists('./public/posts'))
-    for (const file of await fs.readdir('./public/posts')) {
-        await fs.unlink(`./public/posts/${file}`);
-    }
-else await fs.mkdir('./public/posts');
+const mdPosts = await walk(join(import.meta.dir, '../posts'));
+
+if (await fs.exists(join(import.meta.dir, '../public/posts'))) await fs.rm(join(import.meta.dir, '../public/posts'), { recursive: true, force: true });
+await fs.mkdir(join(import.meta.dir, '../public/posts'));
 
 const posts = [];
 
-for (const mdPost of mdPosts) {
-    let post = await Bun.file(`./posts/${mdPost}`).text();
+for await (const mdPost of mdPosts) {
+    let cleanPath = relative(import.meta.dir, mdPost);
+    cleanPath = cleanPath.replaceAll('\\', '/').replace('../public/', '');
+
+    if ((await fs.lstat(mdPost)).isDirectory()) continue;
+
+    let post = await Bun.file(join(import.meta.dir, `../posts/${cleanPath}`)).text();
     const postMetadata = fm(post);
 
     if (postMetadata.attributes.draft) continue;
@@ -31,7 +36,7 @@ for (const mdPost of mdPosts) {
 
 for (const post of posts) {
     const postId = post.title.toLowerCase().replace(/([^a-z0-9_-])\W?/gi, '-');
-    const template = await Bun.file('./templates/post.html').text();
+    const template = await Bun.file(join(import.meta.dir, '../templates/post.html')).text();
 
     const postHtml = template
         .replaceAll('{{ postTitle }}', post.title)
@@ -43,7 +48,7 @@ for (const post of posts) {
         .replaceAll('{{ postTags }}', post.tags)
         .replaceAll('{{ postContent }}', post.content)
 
-    await Bun.write(`./public/posts/${postId}.html`, postHtml);
+    await Bun.write(join(import.meta.dir, `../public/posts/${postId}.html`), postHtml);
 }
 
 const end = Date.now();
