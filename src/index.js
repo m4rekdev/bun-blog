@@ -33,7 +33,7 @@ const server = Bun.serve({
                     await file.text())
                         .replaceAll('{{ siteName }}', config.siteName)
                         .replaceAll('{{ siteDescription }}', config.siteDescription)
-                        .replaceAll('{{ siteHostname }}', config.siteHostname),
+                        .replaceAll('{{ siteURL }}', config.siteURL),
                 { headers: htmlHeaders }
             );
 

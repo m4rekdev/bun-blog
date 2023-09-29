@@ -1,7 +1,7 @@
 {
     "siteName": "Bun Blog",
     "siteDescription": "A customizable, extendendable and easy-to-use markdown blogging website written in Bun! 🔥",
-    "siteHostname": "https://blog.marekk.net",
+    "siteURL": "https://blog.marekk.net",
     "siteKeywords": "blog, bun, javascript, js",
 
     "server": {

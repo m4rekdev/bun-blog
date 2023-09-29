@@ -23,7 +23,7 @@ for await (const publicFile of publicFiles) {
         fileContents = fileContents
             .replaceAll('{{ siteName }}', config.siteName)
             .replaceAll('{{ siteDescription }}', config.siteDescription)
-            .replaceAll('{{ siteHostname }}', config.siteHostname)
+            .replaceAll('{{ siteURL }}', config.siteURL)
 
     await Bun.write(join(import.meta.dir, `../build/${cleanPath}`), fileContents || '');
 }
