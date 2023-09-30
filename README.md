@@ -23,7 +23,7 @@ You need [Bun](https://bun.sh) for this project.
     ```bash
     bun start
     ```
-4. Write your posts inside the `posts` posts directory using [Markdown](https://www.markdownguide.org/basic-syntax/) and [Frontmatter](https://jekyllrb.com/docs/front-matter/) following the examples in that folder. You can also use subdirectories to organize your posts.
+4. Write your posts inside the `posts` directory using [Markdown](https://www.markdownguide.org/basic-syntax/) and [Frontmatter](https://jekyllrb.com/docs/front-matter/) following the examples in that folder. You can also use subdirectories to organize your posts.
 
 5. Parse posts, so the HTML files for them are generated in the `public/posts` folder. You can customize the `post.html` in the `templates/posts`. It also populates the {{ posts.list }} template variable, so you can list your posts inside any HTML file inside the `public` folder (this uses the `templates/posts/card.html` template), the list of the post cards will be located inside the `templates/posts/list.html` file. You need to do this each time you edit your existing posts or write new ones.
 
