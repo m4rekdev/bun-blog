@@ -21,7 +21,7 @@ const server = Bun.serve({
         if (filePath === "public/") filePath = "public/index";
 
         //if the file doesn't have an extension, add .html 
-        if (!filePath.match(/^.*\.[^\\]+$/)?.length) filePath = filePath + ".html";
+        if (!filePath.match(/(\w+\.\w+)$/i)?.length) filePath = filePath + ".html";
 
         const file = Bun.file(join(import.meta.dir, `../${filePath}`));
         if (!(await file.exists())) return await returnError(404);

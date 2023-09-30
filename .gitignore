@@ -171,7 +171,9 @@ dist
 # IntelliJ based IDEs
 .idea
 
-# project specific
+# project-specific
 public/posts/*
+public/rss.xml
 build/*
 bun.lockb
+templates/posts/list.html

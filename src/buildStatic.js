@@ -36,7 +36,17 @@ for await (const publicFile of publicFiles) {
 
         fileContents = document.documentElement.outerHTML;
     }
-    
+
+    const linkRegex = /(?:ht|f)tps?:\/\/[-a-zA-Z0-9.]+\.[a-zA-Z]{2,3}(\/[^"<]*)?/g;
+    fileContents = fileContents.replace(linkRegex, (url, path) => {
+        if (!url.startsWith(templates.baseURL) || !path) return url;
+
+        //if the file doesn't have an extension, add .html 
+        if (!path.match(/(\w+\.\w+)$/i)?.length) return url + ".html";
+        
+        return url;
+    });
+
     await Bun.write(join(import.meta.dir, `../build/${cleanPath}`), fileContents || '');
 }
 

@@ -1,10 +1,24 @@
 {
     "siteName": "Bun Blog",
     "siteDescription": "A customizable, extendendable and easy-to-use markdown blogging website written in Bun! 🔥",
-    "siteKeywords": "blog, bun, javascript, js",
+    "siteKeywords": ["blog", "bun", "javascript", "js"],
+
+    "siteIcon": "",
+    "siteImage": "",
 
     "baseURL": "https://blog.marekk.net",
     "defaultTheme": "dark",
+
+    "rss": {
+        "title": "{{ siteName }}",
+        "description": "{{ siteDescription }}",
+        "generator": "Bun Blog v0.1 (Beta)",
+        "feed_url": "{{ baseURL }}/rss.xml",
+        "site_url": "{{ baseURL }}",
+        "copyright": "Copyright 2023 {{ siteName }}",
+        "categories": ["blog", "bun", "javascript", "js"],
+        "ttl": 60
+    },
 
     "errors": {
         "403": {

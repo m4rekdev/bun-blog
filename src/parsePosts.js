@@ -9,6 +9,7 @@ import walk from './utils/walk.js';
 import replaceTemplates from './utils/replaceTemplates.js';
 import templates from './utils/templates.js';
 const fm = require('front-matter');
+const rss = require('rss');
 
 const mdPosts = await walk(join(import.meta.dir, '../posts'));
 
@@ -39,6 +40,8 @@ for await (const mdPost of mdPosts) {
     posts.push(postData);
 }
 
+const feed = new rss(JSON.parse(replaceTemplates(JSON.stringify(templates.rss))));
+
 for (const post of posts) {
     const template = templates.posts.page;
 
@@ -52,9 +55,20 @@ for (const post of posts) {
 
     const cardHtml = replaceTemplates(templates.posts.card, variablesTemplate);
     list.push(cardHtml);
+
+    feed.item({
+        title: post.title,
+        description: post.description,
+        url: replaceTemplates(`{{ baseURL }}/posts/${post.id}`),
+        guid: post.id,
+        categories: post.tags,
+        author: post.author,
+        date: post.date
+    });
 }
 
 await Bun.write(join(import.meta.dir, `../templates/posts/list.html`), list.join('\n'));
+await Bun.write(join(import.meta.dir, `../public/rss.xml`), feed.xml());
 
 const end = Date.now();
 console.log(`Success! Parsed ${posts.length} post(s) in ${end - start} ms`)
