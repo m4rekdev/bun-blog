@@ -7,7 +7,7 @@
     "siteImage": "",
 
     "baseURL": "https://blog.marekk.net",
-    "defaultTheme": "dark",
+    "defaultTheme": "default",
 
     "rss": {
         "title": "{{ siteName }}",
