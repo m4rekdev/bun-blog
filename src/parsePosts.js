@@ -14,7 +14,7 @@ const rss = require('rss');
 const configFile = Bun.file(join(import.meta.dir, '../config.json'));
 
 if (!await configFile.exists()) {
-    console.log('You need to make a config.json to use bun-blog. You can start by copying or renaming config.json.sample to config.json');
+    console.log('You need to make a config.json to use bun-blog. You can start by copying or renaming config.json.example to config.json');
     process.exit();
 }
 

@@ -10,6 +10,8 @@ To install dependencies:
 bun install
 ```
 
+You need to make a `config.json` to use bun-blog. You can start by copying or renaming `config.json.example` to `config.json`.
+
 To run:
 
 ```bash
