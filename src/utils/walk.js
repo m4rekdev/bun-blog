@@ -1,16 +1,16 @@
-const { resolve } = require('path');
-const { readdir } = require('fs').promises;
+import { resolve } from 'path';
+import { readdir } from 'fs/promises';
 
-async function* getFiles(dir) {
+async function* walk(dir) {
   const dirents = await readdir(dir, { withFileTypes: true });
   for (const dirent of dirents) {
     const res = resolve(dir, dirent.name);
     if (dirent.isDirectory()) {
-      yield* getFiles(res);
+      yield* walk(res);
     } else {
       yield res;
     }
   }
 }
 
-export default getFiles;
+export default walk;

@@ -1,6 +1,6 @@
 ---
 title: Different Example
-coverImage: https://assets.stickpng.com/images/61d183263a856e0004c6334a.png
+coverImage: /assets/images/amongus-crewmate.webp
 author: marekk
 draft: false
 pubDate: "September 28, 2023 7:42:00 PM"

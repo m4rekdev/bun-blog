@@ -124,6 +124,7 @@
     width: 100%;
     margin: 0;
     gap: 0.5rem;
+    padding-block: 64px;
 }
 
 :root[theme="dark"] .header.secondary {
@@ -182,7 +183,7 @@
 
 :root[theme="dark"] .card:has(img) h1 {
     position: relative;
-    top: -80px;
+    top: -100px;
     background: var(--card-heading-background);
     padding: 20px;
     border-top-left-radius: var(--card-border-radius);
@@ -190,7 +191,7 @@
     backdrop-filter: blur(5px);
 }
 
-:root[theme="dark"] .card:has(img) p {
+:root[theme="dark"] .card:has(img) p:first-of-type {
     margin-top: -100px;
 }
 

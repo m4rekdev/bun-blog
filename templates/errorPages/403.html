@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" theme="{{ defaultTheme }}">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <meta property="og:title" content="{{ errors.403.title }} | {{ siteName }}">
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="">
+    <meta property="og:url" content="{{ baseURL }}/{{ requestedPath }}">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <meta property="og:description" content="{{ errors.403.text }}">
+    <meta property="og:site_name" content="{{ errors.403.title }} | {{ siteName }}">
+    <meta name="twitter:image:alt" content="{{ errors.403.title }} | {{ siteName }}">
+
+    <title>{{ errors.403.title }} | {{ siteName }}</title>
+    <link rel="stylesheet" href="/assets/css/styles.css" />
+  </head>
+  <body>
+    {{ navbar }}
+
+    <div class="header flex direction-column center text-center">
+      <h1>{{ errors.403.title }}</h1>
+      <p>{{ errors.403.text }}</p>
+      <p><a href="/">Home</a> • <a href="#">Go Back</a></p>
+    </div>
+  </body>
+</html>

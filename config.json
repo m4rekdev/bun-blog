@@ -1,8 +1,21 @@
 {
     "siteName": "Bun Blog",
     "siteDescription": "A customizable, extendendable and easy-to-use markdown blogging website written in Bun! 🔥",
-    "siteURL": "https://blog.marekk.net",
     "siteKeywords": "blog, bun, javascript, js",
+
+    "baseURL": "https://blog.marekk.net",
+    "defaultTheme": "dark",
+
+    "errors": {
+        "403": {
+            "title": "Unauthorized",
+            "text": "You can't access the requested file."
+        },
+        "404": {
+            "title": "Not Found",
+            "text": "Couldn't find the requested file."
+        }
+    },
 
     "server": {
         "host": "0.0.0.0",

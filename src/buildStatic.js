@@ -4,6 +4,9 @@ import fs from 'node:fs/promises';
 import { join, relative, dirname } from 'path';
 import walk from './utils/walk.js';
 import { JSDOM } from 'jsdom';
+import replaceTemplates from './utils/replaceTemplates.js';
+import templates from './utils/templates.js';
+import { file } from 'bun';
 
 const config = await Bun.file(join(import.meta.dir, '../config.json')).json();
 const publicFiles = await walk(join(import.meta.dir, '../public'));
@@ -20,11 +23,28 @@ for await (const publicFile of publicFiles) {
     await fs.mkdir(dirname(join(import.meta.dir, `../build/${cleanPath}`)), { recursive: true });
 
     let fileContents = await Bun.file(join(import.meta.dir, `../public/${cleanPath}`)).text();
-    if (cleanPath.match(/^(.(.*\.html))*$/)?.length)
-        fileContents = fileContents
-            .replaceAll('{{ siteName }}', config.siteName)
-            .replaceAll('{{ siteDescription }}', config.siteDescription)
-            .replaceAll('{{ siteURL }}', config.siteURL)
+    if (cleanPath.match(/^(.(.*\.html))*$/)?.length) {
+        fileContents = replaceTemplates(fileContents);
+
+        const { document } = new JSDOM(fileContents).window;
+        const links = document.querySelectorAll('a[href]');
+
+        links.forEach(link => {
+            const href = link.getAttribute('href');
+            if (!href.startsWith('http://') && !href.startsWith('https://') && !href.match(/^.*\.[^\\]+$/)?.length && href !== '/') link.setAttribute('href', href + '.html');
+        });
+
+        fileContents = document.documentElement.outerHTML;
+    }
+    
+    await Bun.write(join(import.meta.dir, `../build/${cleanPath}`), fileContents || '');
+}
+
+await fs.mkdir(join(import.meta.dir, `../build/errors`), { recursive: true });
+
+for (const [ key, value ] of Object.entries(templates.errorPages)) {
+    let fileContents = value;
+    fileContents = replaceTemplates(fileContents);
 
     const { document } = new JSDOM(fileContents).window;
     const links = document.querySelectorAll('a[href]');
@@ -35,7 +55,7 @@ for await (const publicFile of publicFiles) {
     });
 
     fileContents = document.documentElement.outerHTML;
-    await Bun.write(join(import.meta.dir, `../build/${cleanPath}`), fileContents || '');
+    await Bun.write(join(import.meta.dir, `../build/errors/${key}.html`), fileContents || '');
 }
 
 const end = Date.now();

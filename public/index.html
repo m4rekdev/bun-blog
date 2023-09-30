@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" theme="dark">
+<html lang="en" theme="{{ defaultTheme }}">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,7 +7,7 @@
     <meta property="og:title" content="{{ siteName }}">
     <meta property="og:type" content="website" />
     <meta property="og:image" content="">
-    <meta property="og:url" content="{{ siteURL }}">
+    <meta property="og:url" content="{{ baseURL }}">
     <meta name="twitter:card" content="summary_large_image">
 
     <meta property="og:description" content="{{ siteDescription }}">
@@ -19,13 +19,7 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   </head>
   <body>
-    <nav>
-      <a href="/"><h1>{{ siteName }}</h1></a>
-
-      <ul>
-        <li><a href="/rss">RSS</a></li>
-      </ul>
-    </nav>
+    {{ navbar }}
 
     <section class="header secondary flex direction-column center text-center">
         <h1>Welcome to {{ siteName }}!</h1>
@@ -42,13 +36,7 @@
       <em class="text-center">my posts</em>
 
       <div class="blogs">
-        <!-- <p class="text-center" data-aos="fade-up">Loading...</p> -->
-        <!-- <a href="/posts/example-post" data-aos="fade-up" class="card flex direction-column center">
-          <img src="https://upload.wikimedia.org/wikipedia/en/4/4d/Shrek_%28character%29.png" alt="Example Post">
-          <h1>Example Post</h1>
-          <p>this is just an example. also shrek is cool</p>
-          <div class="btn primary">Read more</div>
-        </a> -->
+        {{ posts.list }}
       </div>
     </section>
 
@@ -57,7 +45,6 @@
         AOS.init();
     </script>
 
-    <script src="/assets/js/navScroll.js"></script>
     <script src="/assets/js/posts.js"></script>
   </body>
 </html>

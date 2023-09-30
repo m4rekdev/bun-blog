@@ -1,5 +1,7 @@
 import { parse } from "url";
 import { join } from 'path';
+import replaceTemplates from "./utils/replaceTemplates";
+import templates from "./utils/templates";
 
 const htmlHeaders = new Headers();
 htmlHeaders.set('Content-Type', 'text/html;charset=utf-8');
@@ -21,19 +23,13 @@ const server = Bun.serve({
         //if the file doesn't have an extension, add .html 
         if (!filePath.match(/^.*\.[^\\]+$/)?.length) filePath = filePath + ".html";
 
-        if (filePath.startsWith("public/errors/")) return await returnError(404);
-
         const file = Bun.file(join(import.meta.dir, `../${filePath}`));
         if (!(await file.exists())) return await returnError(404);
 
         //if it's an html file, replace the variables with the values in config.json
         if (filePath.match(/^(.(.*\.html))*$/)?.length)
             return new Response(
-                (
-                    await file.text())
-                        .replaceAll('{{ siteName }}', config.siteName)
-                        .replaceAll('{{ siteDescription }}', config.siteDescription)
-                        .replaceAll('{{ siteURL }}', config.siteURL),
+                replaceTemplates(await file.text()),
                 { headers: htmlHeaders }
             );
 
@@ -45,15 +41,10 @@ console.log(`Listening on ${server.hostname}:${server.port}`);
 
 
 async function returnError(code) {
-    const errorPage = Bun.file(join(import.meta.dir, `../public/errors/${code}.html`));
-    if (!(await errorPage.exists()))
-        return new Response(`Couldn't find the error page. You shouldn't be here. (☉_☉) Anyways, the status code is ${code}.`, { status: code });
+    const errorPage = replaceTemplates(templates.errorPages[code]);
 
     return new Response(
-        (
-            await errorPage.text())
-                .replaceAll('{{ siteName }}', config.siteName)
-                .replaceAll('{{ siteDescription }}', config.siteDescription)
-                .replaceAll('{{ siteHostname }}', config.siteHostname),
-        { headers: htmlHeaders, status: code });
+        errorPage,
+        { headers: htmlHeaders, status: code }
+    );
 }
