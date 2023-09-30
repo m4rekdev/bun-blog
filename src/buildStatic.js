@@ -6,9 +6,15 @@ import walk from './utils/walk.js';
 import { JSDOM } from 'jsdom';
 import replaceTemplates from './utils/replaceTemplates.js';
 import templates from './utils/templates.js';
-import { file } from 'bun';
 
-const config = await Bun.file(join(import.meta.dir, '../config.json')).json();
+
+const configFile = Bun.file(join(import.meta.dir, '../config.json'));
+
+if (!await configFile.exists()) {
+    console.log('You need to make a config.json to use bun-blog. You can start by copying or renaming config.json.sample to config.json');
+    process.exit();
+}
+
 const publicFiles = await walk(join(import.meta.dir, '../public'));
 
 if (await fs.exists(join(import.meta.dir, '../build'))) await fs.rm(join(import.meta.dir, '../build'), { recursive: true, force: true });
@@ -43,7 +49,7 @@ for await (const publicFile of publicFiles) {
 
         //if the file doesn't have an extension, add .html 
         if (!path.match(/(\w+\.\w+)$/i)?.length) return url + ".html";
-        
+
         return url;
     });
 

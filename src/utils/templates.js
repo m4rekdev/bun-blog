@@ -1,7 +1,15 @@
 import { join, relative, dirname, basename } from 'path';
 import walk from './walk.js';
 
-const config = await Bun.file(join(import.meta.dir, '../../config.json')).json();
+const configFile = Bun.file(join(import.meta.dir, '../config.json'));
+
+if (!await configFile.exists()) {
+    console.log('You need to make a config.json to use bun-blog. You can start by copying or renaming config.json.sample to config.json');
+    process.exit();
+}
+
+const config = await configFile.json();
+
 const templateFiles = await walk(join(import.meta.dir, '../../templates'));
 
 const templates = {};

@@ -177,3 +177,4 @@ public/rss.xml
 build/*
 bun.lockb
 templates/posts/list.html
+config.json
