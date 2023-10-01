@@ -7,12 +7,6 @@ const htmlHeaders = new Headers();
 htmlHeaders.set('Content-Type', 'text/html;charset=utf-8');
 
 const configFile = Bun.file(join(import.meta.dir, '../config.json'));
-
-if (!await configFile.exists()) {
-    console.log('You need to make a config.json to use bun-blog. You can start by copying or renaming config.json.example to config.json');
-    process.exit();
-}
-
 const config = await configFile.json();
 
 const server = Bun.serve({

@@ -1,7 +1,7 @@
 import { join, relative, dirname, basename } from 'path';
 import walk from './walk.js';
 
-const configFile = Bun.file(join(import.meta.dir, '../config.json'));
+const configFile = Bun.file(join(import.meta.dir, '../../config.json'));
 
 if (!await configFile.exists()) {
     console.log('You need to make a config.json to use bun-blog. You can start by copying or renaming config.json.example to config.json');
