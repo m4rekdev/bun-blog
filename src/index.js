@@ -2,16 +2,19 @@ import { parse } from "url";
 import { join } from 'path';
 import replaceTemplates from "./utils/replaceTemplates";
 import templates from "./utils/templates";
+import parsePosts from "./parsePosts";
 
 const htmlHeaders = new Headers();
 htmlHeaders.set('Content-Type', 'text/html;charset=utf-8');
 
-const configFile = Bun.file(join(import.meta.dir, '../config.json'));
-const config = await configFile.json();
+setInterval(async () => {
+    console.log('Refreshed posts!');
+    await parsePosts.parse();
+}, 300000);
 
 const server = Bun.serve({
-    port: config.server.port,
-    hostname: config.server.host,
+    port: templates.server.port,
+    hostname: templates.server.host,
     async fetch(req) {
         let filePath = "public" + parse(req.url).pathname;
 
@@ -27,7 +30,7 @@ const server = Bun.serve({
         const file = Bun.file(join(import.meta.dir, `../${filePath}`));
         if (!(await file.exists())) return await returnError(404);
 
-        //if it's an html file, replace the variables with the values in config.json
+        //if it's an html file, replace the variables with templates
         if (filePath.match(/^(.(.*\.html))*$/)?.length)
             return new Response(
                 replaceTemplates(await file.text()),
