@@ -50,6 +50,7 @@ You can make themes by adding css files to `public/assets/css`, using the `:root
 # Templates (Variables and Pages)
 
 **List of available global variables:**
+- {{ version }} - Version of Bun Blog you're running
 - {{ siteName }} - Site Name
 - {{ siteDescription }} - Site Description
 - {{ siteKeywords }} - Site Keywords
