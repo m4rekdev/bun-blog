@@ -9,10 +9,12 @@ import walk from './utils/walk.js';
 const fm = require('front-matter');
 const rss = require('rss');
 
-const posts = [],
-      list = [];
+let postsCount = 0;
 
 async function parse() {
+    const posts = [],
+          list  = [];
+
     const replaceTemplates = (await import('./utils/replaceTemplates.js')).default;
     const templates = (await import('./utils/templates.js')).default;
 
@@ -71,10 +73,12 @@ async function parse() {
 
     await Bun.write(join(import.meta.dir, `../templates/posts/list.html`), list.join('\n'));
     await Bun.write(join(import.meta.dir, `../public/rss.xml`), feed.xml());
+
+    postsCount = posts.length;
 }
 
 await parse();
 const end = Date.now();
-console.log(`Success! Parsed ${posts.length} post(s) in ${end - start} ms`);
+console.log(`Success! Parsed ${postsCount} posts in ${end - start} ms`);
 
 export default { parse };

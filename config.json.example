@@ -12,7 +12,7 @@
     "rss": {
         "title": "{{ siteName }}",
         "description": "{{ siteDescription }}",
-        "generator": "Bun Blog v0.1 (Beta)",
+        "generator": "Bun Blog {{ version }}",
         "feed_url": "{{ baseURL }}/rss.xml",
         "site_url": "{{ baseURL }}",
         "copyright": "Copyright 2023 {{ siteName }}",

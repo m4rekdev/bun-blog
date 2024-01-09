@@ -3,6 +3,9 @@ import walk from './walk.js';
 
 const templates = {};
 
+const pkg = await Bun.file(join(import.meta.dir, '../../package.json')).json();
+templates.version = pkg.version;
+
 async function loadTemplates() {
     const configFile = Bun.file(join(import.meta.dir, '../../config.json'));
 
