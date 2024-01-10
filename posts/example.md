@@ -1,16 +1,39 @@
 ---
 title: Example Post
-coverImage: https://upload.wikimedia.org/wikipedia/en/4/4d/Shrek_%28character%29.png
+coverImage: /assets/images/example-cover.jpg
 author: marekk
 draft: false
 pubDate: "September 28, 2023 7:42:00 PM"
 editedDate: null
-description: this is just an example. also shrek is cool
+description: this post shows what bun blog can do
 tags:
-- shrek
+- bun-blog
 - example
 ---
 
-# shrek
+## *Bun Blog uses markdown for post text.*
 
-shrek is cool
+# Text
+
+If you want to go on a new line, use two new lines.
+See? This is on the same line.
+
+This is on another line.
+
+
+You can also use [links](https://example.com), `inline code blocks` and normal code blocks.
+
+
+Code block example:
+
+```js
+console.log('hello world!');
+```
+
+# Images
+
+todo
+
+# Tables
+
+todo

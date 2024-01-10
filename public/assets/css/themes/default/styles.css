@@ -161,6 +161,7 @@
     text-decoration: none;
     color: var(--text-color);
     transition: scale 0.3s, box-shadow 0.3s, opacity 0.4s, transform 0.4s;
+    justify-content: flex-start !important;
 }
 
 :root[theme="default"] .card:hover {
@@ -181,9 +182,9 @@
     max-width: 95%;
 }
 
-:root[theme="default"] .card:has(img) h1 {
+:root[theme="default"] .card:has(img.loaded) h1 {
     position: relative;
-    top: -100px;
+    top: -16%;
     background: var(--card-heading-background);
     padding: 20px;
     border-top-left-radius: var(--card-border-radius);
@@ -191,7 +192,7 @@
     backdrop-filter: blur(5px);
 }
 
-:root[theme="default"] .card:has(img) p:first-of-type {
+:root[theme="default"] .card:has(img.loaded) p:first-of-type {
     margin-top: -100px;
 }
 

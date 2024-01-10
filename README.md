@@ -82,6 +82,7 @@ You can make themes by adding css files to `public/assets/css`, using the `:root
 **List of available post variables (available only if the template is for a post):**
 - {{ post.title }} - Post Title
 - {{ post.coverImage }} - Post Cover Image
+- {{ post.coverImageHtml }} - HTML for the Post Cover Image
 - {{ post.author }} - Post Author
 - {{ post.draft }} - Is it a draft? (true/false)
 - {{ post.pubDate }} - Post Publish Date

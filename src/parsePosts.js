@@ -52,6 +52,9 @@ async function parse() {
         post.id = post.fileName.toLowerCase().replace(/([^a-z0-9_-])\W?/gi, '-').substring(0, post.fileName.length - 3);
         post.date = new Date(post.editedDate || post.pubDate).toLocaleString('en-US') + ' GMT';
 
+        if (post.coverImage) post.coverImageHtml = `<img src="${post.coverImage}" alt="${post.title}">`;
+        else post.coverImageHtml = '';
+
         const variablesTemplate = { post };
 
         const postHtml = replaceTemplates(template, variablesTemplate);

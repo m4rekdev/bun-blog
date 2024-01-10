@@ -1,15 +1,16 @@
 ---
 title: Different Example
-coverImage: /assets/images/amongus-crewmate.webp
+coverImage: null
 author: marekk
 draft: false
 pubDate: "September 28, 2023 7:42:00 PM"
 editedDate: null
-description: another example. RED IS SUS
+description: another example. this shows you can have different titles and slugs
 tags:
-- sus
-- amongus
+- bun-blog
+- example
+- another
+- different
 ---
 
-# SUS
-amogsus
+This post is located in `posts/09-2023`. this shows that you can have your own folder structure for posts and bun-blog will still parse all of the posts

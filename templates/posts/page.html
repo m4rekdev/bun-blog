@@ -24,7 +24,7 @@
     {{ navbar }}
 
     <section class="header secondary flex direction-column center text-center">
-        <img src="{{ post.coverImage }}" alt="{{ post.title }}">
+        {{ post.coverImageHtml }}
         <h1>{{ post.title }}</h1>
         <p>{{ post.description }}</p>
         <p>{{ post.author }} • {{ post.date }}</p>

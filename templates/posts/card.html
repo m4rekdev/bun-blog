@@ -1,5 +1,5 @@
 <a href="/posts/{{ post.id }}" data-aos="fade-up" class="card flex direction-column center">
-    <img src="{{ post.coverImage }}" alt="{{ post.title }}">
+    {{ post.coverImageHtml }}
     <h1>{{ post.title }}</h1>
     <p>{{ post.author }} • {{ post.date }}</p>
     <p>{{ post.description }}</p>
