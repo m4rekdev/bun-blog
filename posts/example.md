@@ -32,8 +32,11 @@ console.log('hello world!');
 
 # Images
 
-todo
+![image](https://images.pexels.com/photos/18709783/pexels-photo-18709783/free-photo-of-sunlight-behind-green-tree-leaves.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1)
 
 # Tables
 
-todo
+| Column 1 | Column 2 |
+| -------- | -------- |
+| Row 1    | Row 1    |
+| Row 2    | Row 2    |
