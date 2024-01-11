@@ -1,6 +1,6 @@
 {
   "name": "bun-blog",
-  "version": "v0.3 (Beta)",
+  "version": "v0.4 (Beta)",
   "module": "index.js",
   "type": "module",
   "devDependencies": {
@@ -12,7 +12,10 @@
   "scripts": {
     "start": "bun ./src/index.js",
     "parsePosts": "bun ./src/parsePosts.js",
-    "buildStatic": "bun ./src/buildStatic.js"
+    "buildStatic": "bun ./src/buildStatic.js",
+    "nodeStart": "node ./src/node.js start",
+    "nodeParsePosts": "node ./src/node.js parsePosts",
+    "nodeBuildStatic": "node ./src/node.js buildStatic"
   },
   "dependencies": {
     "dompurify": "^3.0.5",

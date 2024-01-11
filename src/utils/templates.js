@@ -46,6 +46,6 @@ async function loadTemplates() {
 }
 
 await loadTemplates();
-setInterval(async () => await loadTemplates(), 30000);
+setInterval(async () => await loadTemplates(), 5000);
 
 export default templates;

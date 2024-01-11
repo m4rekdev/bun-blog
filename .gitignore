@@ -172,6 +172,7 @@ dist
 .idea
 
 # project-specific
+package-lock.json
 public/posts/*
 public/rss.xml
 build/*

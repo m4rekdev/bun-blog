@@ -20,12 +20,9 @@ See? This is on the same line.
 
 This is on another line.
 
-
 You can also use [links](https://example.com), `inline code blocks` and normal code blocks.
 
-
 Code block example:
-
 ```js
 console.log('hello world!');
 ```

@@ -5,7 +5,9 @@ A customizable, extendable and easy-to-use markdown blogging website written in 
 ## Table Of Contents 📝
 - [Setup](#setup)
 - [Themes](#themes)
+- [Themes](#themes)
 - [Templates](#templates-variables-and-pages)
+- [Post Date Format](#post-date-format)
 - [Static Building](#static-building)
 
 # Setup
@@ -57,7 +59,9 @@ You can make themes by adding css files to `public/assets/css`, using the `:root
 - {{ siteIcon }} - Site Icon
 - {{ siteImage }} - Site Image
 - {{ baseURL }} - Base URL for the site
-- {{ defaultTheme }} - The default theme set in the config
+- {{ defaultTheme }} - The default theme
+- {{ postRefreshInterval }} - The post refresh interval
+- {{ dateString }} - The string to format dates
 - {{ rss.title }} - RSS Title
 - {{ rss.description }} - RSS Description
 - {{ rss.generator }} - RSS Generator
@@ -93,6 +97,17 @@ You can make themes by adding css files to `public/assets/css`, using the `:root
 - {{ post.id }} - Post ID (Slug)
 - {{ post.date }} - Most recent date (can be the Publish Date or the Last Edit Date)
 - {{ post.fileName }} - Post File Name
+
+# Post Date Format
+
+- `yyyy` - year
+- `MM` - month
+- `dd` - day
+- `HH` - hours
+- `hh` - hours, max 12, made for use with `tt`
+- `mm` - minutes
+- `ss` - seconds
+- `tt` - AM or PM based on the number of hours
 
 # Static Building
 

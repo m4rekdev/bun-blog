@@ -1,4 +1,4 @@
-import templates from "./templates";
+import templates from "./templates.js";
 
 function replaceTemplates(input, customTemplates, parentTemplates) {
   const result = input.replace(/{{\s*(.*?)\s*}}/g, (match, templateKey) => {

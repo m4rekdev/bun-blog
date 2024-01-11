@@ -1,16 +1,16 @@
 import { parse } from "url";
 import { join } from 'path';
-import replaceTemplates from "./utils/replaceTemplates";
-import templates from "./utils/templates";
-import parsePosts from "./parsePosts";
+import replaceTemplates from "./utils/replaceTemplates.js";
+import templates from "./utils/templates.js";
+import posts from "./utils/posts.js";
 
 const htmlHeaders = new Headers();
 htmlHeaders.set('Content-Type', 'text/html;charset=utf-8');
 
 setInterval(async () => {
-    console.log('Refreshed posts!');
-    await parsePosts.parse();
-}, 300000);
+    const postsCount = await posts.parse();
+    console.log(`Refreshed ${postsCount} posts!`);
+}, templates.postRefreshInterval * 1000);
 
 const server = Bun.serve({
     port: templates.server.port,
@@ -41,8 +41,10 @@ const server = Bun.serve({
     },
 });
 
-console.log(`Listening on ${server.hostname}:${server.port}`);
+const postsCount = await posts.parse();
+console.log(`Parsed ${postsCount} posts!`);
 
+console.log(`Listening on ${server.hostname}:${server.port}`);
 
 async function returnError(code) {
     const errorPage = replaceTemplates(templates.errorPages[code]);

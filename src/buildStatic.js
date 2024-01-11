@@ -1,3 +1,5 @@
+if (typeof Bun === 'undefined') throw new Error('You need Bun to run this!');
+
 const start = Date.now();
 
 import fs from 'node:fs/promises';
@@ -6,9 +8,9 @@ import walk from './utils/walk.js';
 import { JSDOM } from 'jsdom';
 import replaceTemplates from './utils/replaceTemplates.js';
 import templates from './utils/templates.js';
-import parsePosts from "./parsePosts";
+import posts from "./utils/posts.js";
 
-await parsePosts.parse();
+await posts.parse();
 
 const publicFiles = await walk(join(import.meta.dir, '../public'));
 
@@ -70,4 +72,6 @@ for (const [ key, value ] of Object.entries(templates.errorPages)) {
 }
 
 const end = Date.now();
-console.log(`Success! Built the static site in ${end - start} ms`)
+
+console.log(`Success! Built the static site in ${end - start} ms`);
+process.exit();

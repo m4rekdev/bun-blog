@@ -6,8 +6,11 @@
     "siteIcon": "",
     "siteImage": "",
 
-    "baseURL": "https://blog.marekk.net",
+    "baseURL": "https://blog.example.com",
     "defaultTheme": "default",
+
+    "postRefreshInterval": 300,
+    "dateString": "MM/dd/yyyy hh:mm tt",
 
     "rss": {
         "title": "{{ siteName }}",
@@ -16,7 +19,6 @@
         "feed_url": "{{ baseURL }}/rss.xml",
         "site_url": "{{ baseURL }}",
         "copyright": "Copyright 2023 {{ siteName }}",
-        "categories": ["blog", "bun", "javascript", "js"],
         "ttl": 60
     },
 
