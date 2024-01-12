@@ -17,24 +17,24 @@
     <meta property="og:site_name" content="{{ siteName }}">
     <meta name="twitter:image:alt" content="{{ post.title }}">
 
-    <title>{{ post.title }} | {{ siteName }}</title>
-    <link rel="stylesheet" href="../assets/css/styles.css" />
+    <title>Author {{ author.displayName }} | {{ siteName }}</title>
+    <link rel="stylesheet" href="{{ baseURL }}/assets/css/styles.css" />
 </head>
 <body>
-    {{ navbar }}
+    {{ components.navbar }}
 
-    <section class="header secondary flex direction-column center text-center">
-        {{ post.coverImageHtml }}
-        <h1>{{ post.title }}</h1>
-        <p>{{ post.description }}</p>
-        <p>{{ post.author }} • {{ post.date }}</p>
-        <div class="postTags flex items-center">
-            {{ post.tags }}
+    <section class="author">
+        {{ author.avatarHtml }}
+
+        <h1>{{ author.displayName }}</h1>
+        
+        <div class="content">
+            {{ author.content }}
         </div>
-    </section>
 
-    <section class="flex direction-column">
-        {{ post.content }}
+        <div class="posts">
+            {{ author.posts }}
+        </div>
     </section>
 </body>
 </html>

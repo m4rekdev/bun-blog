@@ -2,6 +2,7 @@ import { join, relative, dirname, basename } from 'path';
 import walk from './walk.js';
 
 const templates = {};
+const externalTemplates = {};
 
 const pkg = await Bun.file(join(import.meta.dir, '../../package.json')).json();
 templates.version = pkg.version;
@@ -16,6 +17,9 @@ async function loadTemplates() {
 
     const config = await configFile.json();
     const templateFiles = await walk(join(import.meta.dir, '../../templates'));
+
+    if (externalTemplates)
+        for (const externalTemplateType of Object.keys(externalTemplates)) templates[externalTemplateType] = externalTemplates[externalTemplateType];
 
     for (const configKey of Object.keys(config)) {
         templates[configKey] = config[configKey];
@@ -45,7 +49,15 @@ async function loadTemplates() {
     }
 }
 
+async function addExternalTemplate(type, name, content) {
+    if (!externalTemplates?.[type]) externalTemplates[type] = {};
+    externalTemplates[type][name] = content;
+
+    await loadTemplates();
+}
+
 await loadTemplates();
 setInterval(async () => await loadTemplates(), 5000);
 
 export default templates;
+export { addExternalTemplate };

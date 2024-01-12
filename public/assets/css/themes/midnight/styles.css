@@ -1,0 +1,122 @@
+@import "colors.css";
+@import "variables.css";
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+:root[theme="midnight"] * {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+:root[theme="midnight"] body {
+    background-color: #0F172A;
+    color: #f2f2f2;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+}
+
+:root[theme="midnight"] a {
+    color: #3c77ff;
+}
+
+:root[theme="midnight"] img {
+    max-width: 90%;
+    object-fit: cover;
+    border-radius: 15px;
+}
+
+:root[theme="midnight"] nav {
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 99;
+    padding: 10px 20px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.3s;
+}
+
+:root[theme="midnight"] nav.scrolled {
+    background-color: #191D26;
+}
+
+:root[theme="midnight"] nav ul {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    width: 50%;
+    align-items: center;
+    list-style: none;
+}
+
+:root[theme="midnight"] .blogs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+
+}
+
+:root[theme="midnight"] .card {
+    background-color: #182B3F;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: inherit;
+    gap: 10px;
+    border-radius: 15px;
+}
+
+:root[theme="midnight"] .card img {
+    max-width: 100%;
+}
+
+:root[theme="midnight"] .card img,
+:root[theme="midnight"] section.post img {
+    aspect-ratio: 16/9;
+    max-height: 256px;
+}
+
+:root[theme="midnight"] a.author {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-block: 10px;
+}
+
+:root[theme="midnight"] .authorAvatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+:root[theme="midnight"] .card .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 10px;
+}
+
+:root[theme="midnight"] .card .tag {
+    background-color: #3c77ff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: #f2f2f2;
+    font-size: 0.8rem;
+}
+
+:root[theme="midnight"] .card .info,
+:root[theme="midnight"] .card .details {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+:root[theme="midnight"] .card .details {
+    font-size: 1rem;
+}

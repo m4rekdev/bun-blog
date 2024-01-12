@@ -2,7 +2,7 @@ import { parse } from "url";
 import { join } from 'path';
 import replaceTemplates from "./utils/replaceTemplates.js";
 import templates from "./utils/templates.js";
-import posts from "./utils/posts.js";
+import parseData from "./utils/parseData.js";
 
 const htmlHeaders = new Headers();
 htmlHeaders.set('Content-Type', 'text/html;charset=utf-8');
@@ -41,13 +41,13 @@ const server = Bun.serve({
     },
 });
 
-const postsCount = await posts.parse();
-console.log(`Parsed ${postsCount} posts!`);
+const parsedData = await parseData.parse();
+console.log(`Parsed ${parsedData.posts} posts, ${parsedData.authors} authors and ${parsedData.tags} tags.`);
 
 console.log(`Listening on ${server.hostname}:${server.port}`);
 
 async function returnError(code) {
-    const errorPage = replaceTemplates(templates.errorPages[code]);
+    const errorPage = replaceTemplates(templates.pages.error[code]);
 
     return new Response(
         errorPage,

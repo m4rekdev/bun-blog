@@ -90,12 +90,16 @@
     justify-content: space-between;
     width: 100%;
     background: transparent;
+    backdrop-filter: blur(5px);
     z-index: 99;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, margin 0.3s, width 0.3s, border-radius 0.3s;
 }
 
 :root[theme="default"] nav.scrolled {
     background: var(--nav-background);
+    margin: 5px 10px;
+    width: calc(100% - 20px);
+    border-radius: 8px;
 }
 
 :root[theme="default"] nav h1 {
@@ -160,13 +164,13 @@
     padding: var(--card-padding);
     text-decoration: none;
     color: var(--text-color);
-    transition: scale 0.3s, box-shadow 0.3s, opacity 0.4s, transform 0.4s;
+    transition: scale 0.2s, box-shadow 0.3s, opacity 0.4s, transform 0.4s;
     justify-content: flex-start !important;
 }
 
 :root[theme="default"] .card:hover {
-    scale: 0.9;
-    box-shadow: 0px 0px 5px 15px rgba(255,255,255,0.1);
+    scale: 0.95;
+    box-shadow: 0px 0px 5px 5px rgba(255,255,255,0.1);
 }
 
 :root[theme="default"] .card img {
@@ -175,6 +179,7 @@
     margin-top: calc(var(--card-padding) * -1);
     border-top-left-radius: var(--card-border-radius);
     border-top-right-radius: var(--card-border-radius);
+    aspect-ratio: 16/9;
 }
 
 :root[theme="default"] .card h1 {
@@ -182,19 +187,19 @@
     max-width: 95%;
 }
 
-:root[theme="default"] .card:has(img.loaded) h1 {
+/* :root[theme="default"] .card:has(img.loaded) h1 {
     position: relative;
-    top: -16%;
+    top: -84px;
     background: var(--card-heading-background);
-    padding: 20px;
+    padding: 15px;
     border-top-left-radius: var(--card-border-radius);
     border-top-right-radius: var(--card-border-radius);
     backdrop-filter: blur(5px);
 }
 
 :root[theme="default"] .card:has(img.loaded) p:first-of-type {
-    margin-top: -100px;
-}
+    margin-top: -75px;
+} */
 
 :root[theme="default"] .btn {
     transition: scale 0.3s;

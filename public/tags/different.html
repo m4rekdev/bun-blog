@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" theme="midnight">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="shortcut icon" href="" type="image/x-icon">
+    <meta name="keywords" content="{{ post.tags }}">
+
+    <meta property="og:title" content="{{ post.title }}">
+    <meta property="og:type" content="article" />
+    <meta property="og:image" content="{{ post.coverImage }}">
+    <meta property="og:url" content="https://pgq8940f-3000.euw.devtunnels.ms/posts/{{ post.id }}">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <meta property="og:description" content="{{ post.description }}">
+    <meta property="og:site_name" content="Bun Blog">
+    <meta name="twitter:image:alt" content="{{ post.title }}">
+
+    <title>Tag different | Bun Blog</title>
+    <link rel="stylesheet" href="https://pgq8940f-3000.euw.devtunnels.ms/assets/css/styles.css" />
+</head>
+<body>
+    <nav>
+    <a href="https://pgq8940f-3000.euw.devtunnels.ms"><h1>Bun Blog</h1></a>
+
+    <ul>
+      <li><a href="https://pgq8940f-3000.euw.devtunnels.ms/rss.xml">RSS</a></li>
+      <li>
+        <select name="themeSelect" id="themeSelect">
+          <option value="default" selected>Default</option>
+          <option value="light">Light</option>
+          <option value="dark">Dark</option>
+          <!-- {{ themeOptionsHtml}} -->
+        </select>
+      </li>
+    </ul>
+</nav>
+
+<script src="https://pgq8940f-3000.euw.devtunnels.ms/assets/js/navScroll.js"></script>
+
+    <section class="tag">
+        
+
+        <h1>different</h1>
+        
+        <div class="content">
+            
+        </div>
+
+        <div class="posts">
+            {"title":"Different Example","author":"marekk","tags":[{"displayName":"bun-blog"},{"displayName":"Example Tag"},{"displayName":"another"},{"displayName":"different"}]}
+        </div>
+    </section>
+</body>
+</html>

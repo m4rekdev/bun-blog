@@ -1,7 +1,7 @@
 ---
 title: Example Post
-coverImage: /assets/images/example-cover.jpg
-author: marekk
+coverImage: "{{ baseURL }}/assets/images/example-cover.jpg"
+author: example
 draft: false
 pubDate: "September 28, 2023 7:42:00 PM"
 editedDate: null

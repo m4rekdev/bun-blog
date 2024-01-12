@@ -17,10 +17,10 @@
     <meta name="twitter:image:alt" content="{{ errors.403.title }} | {{ siteName }}">
 
     <title>{{ errors.403.title }} | {{ siteName }}</title>
-    <link rel="stylesheet" href="/assets/css/styles.css" />
+    <link rel="stylesheet" href="{{ baseURL }}/assets/css/styles.css" />
   </head>
   <body>
-    {{ navbar }}
+    {{ components.navbar }}
 
     <div class="header flex direction-column center text-center">
       <h1>{{ errors.403.title }}</h1>

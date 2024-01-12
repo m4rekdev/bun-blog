@@ -8,7 +8,7 @@ import walk from './utils/walk.js';
 import { JSDOM } from 'jsdom';
 import replaceTemplates from './utils/replaceTemplates.js';
 import templates from './utils/templates.js';
-import posts from "./utils/posts.js";
+import posts from "./utils/parseData.js";
 
 await posts.parse();
 

@@ -12,7 +12,7 @@
     --secondary-background: rgb(0, 80, 200);
     --tertiary-background: rgb(87, 154, 255);
 
-    --nav-background: rgb(32, 32, 32);
+    --nav-background: rgb(32, 32, 32, 0.5);
 
     --card-background: rgb(42, 42, 42);
     --card-heading-background: rgba(42, 42, 42, 0.75);

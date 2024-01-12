@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" theme="{{ defaultTheme }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="shortcut icon" href="{{ siteIcon }}" type="image/x-icon">
+    <meta name="keywords" content="{{ post.tags }}">
+
+    <meta property="og:title" content="{{ post.title }}">
+    <meta property="og:type" content="article" />
+    <meta property="og:image" content="{{ post.coverImage }}">
+    <meta property="og:url" content="{{ baseURL }}/posts/{{ post.id }}">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <meta property="og:description" content="{{ post.description }}">
+    <meta property="og:site_name" content="{{ siteName }}">
+    <meta name="twitter:image:alt" content="{{ post.title }}">
+
+    <title>{{ post.title }} | {{ siteName }}</title>
+    <link rel="stylesheet" href="{{ baseURL }}/assets/css/styles.css" />
+</head>
+<body>
+    {{ components.navbar }}
+
+    <section class="post">
+        {{ post.coverImageHtml }}
+
+        <h1>{{ post.title }}</h1>
+        <p>{{ post.description }}</p>
+
+        <a href="{{ baseURL }}/authors/{{ post.author.id }}" class="author">
+            <img src="{{ post.author.avatar }}" alt="{{ post.author.displayName }}" class="authorAvatar">
+            {{ post.author.displayName }}
+        </a>
+
+        <p>{{ post.date }}</p>
+        
+        <div class="postTags flex items-center">
+            {{ post.tagsHtml }}
+        </div>
+
+        <div class="content">
+            {{ post.content }}
+        </div>
+    </section>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" theme="{{ defaultTheme }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="shortcut icon" href="{{ siteIcon }}" type="image/x-icon">
+    <meta name="keywords" content="{{ post.tags }}">
+
+    <meta property="og:title" content="{{ post.title }}">
+    <meta property="og:type" content="article" />
+    <meta property="og:image" content="{{ post.coverImage }}">
+    <meta property="og:url" content="{{ baseURL }}/posts/{{ post.id }}">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <meta property="og:description" content="{{ post.description }}">
+    <meta property="og:site_name" content="{{ siteName }}">
+    <meta name="twitter:image:alt" content="{{ post.title }}">
+
+    <title>Tag {{ tag.displayName }} | {{ siteName }}</title>
+    <link rel="stylesheet" href="{{ baseURL }}/assets/css/styles.css" />
+</head>
+<body>
+    {{ components.navbar }}
+
+    <section class="tag">
+        {{ tag.imageHtml }}
+
+        <h1>{{ tag.displayName }}</h1>
+        
+        <div class="content">
+            {{ tag.content }}
+        </div>
+
+        <div class="posts">
+            {{ tag.posts }}
+        </div>
+    </section>
+</body>
+</html>
