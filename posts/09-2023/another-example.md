@@ -3,7 +3,7 @@ title: Different Example
 coverImage: null
 author: marekk
 draft: false
-pubDate: "September 28, 2023 7:42:00 PM"
+pubDate: "November 28, 2023 7:42:00 PM"
 editedDate: null
 description: another example. this shows you can have different titles and slugs
 tags:

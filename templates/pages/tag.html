@@ -23,18 +23,25 @@
 <body>
     {{ components.navbar }}
 
-    <section class="tag">
-        {{ tag.imageHtml }}
+    <main>
+        <section class="header">
+            <div class="info">
+                {{ tag.imageHtml }}
 
-        <h1>{{ tag.displayName }}</h1>
-        
-        <div class="content">
-            {{ tag.content }}
-        </div>
-
-        <div class="posts">
-            {{ tag.posts }}
-        </div>
-    </section>
+                <div class="text">
+                    <h1>Tag {{ tag.displayName }}</h1>
+                    <em class="postsCount">{{ tag.postsCount }} posts</em>
+                    <div class="content">
+                        {{ tag.content }}
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="tag">
+            <div class="blogs">
+                {{ tag.postsHtml }}
+            </div>
+        </section>
+    </main>
 </body>
 </html>

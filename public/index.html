@@ -19,34 +19,29 @@
 
     <title>{{ siteName }}</title>
     <link rel="stylesheet" href="{{ baseURL }}/assets/css/styles.css" />
-    <!-- <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"> -->
   </head>
   <body>
     {{ components.navbar }}
 
-    <section class="header">
-        <h1>Welcome to {{ siteName }}!</h1>
-        <p>{{ siteDescription }}</p>
+    <main>
+      <section class="header">
+          <h1>Welcome to {{ siteName }}!</h1>
+          <p>{{ siteDescription }}</p>
 
-        <div class="buttons">
-            <a href="https://github.com/marekk-gh/bun-blog" class="btn primary">GitHub</a>
-            <a href="{{ baseURL }}/rss.xml" class="btn secondary">RSS</a>
+          <div class="buttons">
+              <a href="https://github.com/marekk-gh/bun-blog" class="btn primary">GitHub</a>
+              <a href="{{ baseURL }}/rss.xml" class="btn secondary">RSS</a>
+          </div>
+      </section>
+
+      <section class="postsList">
+        <h1>Posts</h1>
+
+        <div class="blogs">
+          {{ components.lists.posts }}
         </div>
-    </section>
-
-    <section class="postsList">
-      <h1 class="text-center">Posts</h1>
-      <em class="text-center">my posts</em>
-
-      <div class="blogs">
-        {{ posts.list }}
-      </div>
-    </section>
-
-    <!-- <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        AOS.init();
-    </script> -->
+      </section>
+    </main>
 
     <script src="{{ baseURL }}/assets/js/imageLoad.js"></script>
   </body>

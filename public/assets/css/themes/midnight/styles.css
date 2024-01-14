@@ -10,37 +10,51 @@
 }
 
 :root[theme="midnight"] body {
-    background-color: #0F172A;
-    color: #f2f2f2;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 20px;
+    background-color: var(--main-bg);
+    color: var(--text-color);
+    font-family: var(--font);
+    font-size: var(--main-font-size);
 }
 
 :root[theme="midnight"] a {
-    color: #3c77ff;
+    color: var(--link-color);
+}
+
+:root[theme="midnight"] p {
+    max-width: 100%;
 }
 
 :root[theme="midnight"] img {
     max-width: 90%;
     object-fit: cover;
-    border-radius: 15px;
+    border-radius: var(--border-radius);
+}
+
+:root[theme="midnight"] main {
+    padding: 0 10%;
 }
 
 :root[theme="midnight"] nav {
-    position: sticky;
+    position: fixed;
     top: 0;
     left: 0;
     z-index: 99;
     padding: 10px 20px;
+    height: 80px;
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    transition: background-color 0.3s;
+    transition: background 0.3s, margin 0.3s, top 0.3s, width 0.3s;
 }
 
 :root[theme="midnight"] nav.scrolled {
-    background-color: #191D26;
+    background: var(--nav-scrolled-bg);
+    backdrop-filter: var(--blur);
+    margin: 10px;
+    top: 10px;
+    border-radius: var(--border-radius);
+    width: calc(100% - 20px);
 }
 
 :root[theme="midnight"] nav ul {
@@ -52,61 +66,132 @@
     list-style: none;
 }
 
+:root[theme="midnight"] nav a {
+    text-decoration: none;
+    color: inherit;
+    transition: background 0.3s;
+    border-radius: var(--border-radius);
+    padding: 10px;
+}
+
+:root[theme="midnight"] nav ul a {
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+:root[theme="midnight"] nav a:hover {
+    background: var(--nav-item-hover-bg);
+    backdrop-filter: var(--blur);
+}
+
+:root[theme="midnight"] .header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: calc(100% + 25%);
+    margin-left: -12.5%;
+    padding: 30px 12.5%;
+    padding-top: 110px;
+    background: var(--header-bg);
+}
+
+:root[theme="midnight"] .header img {
+    aspect-ratio: 16/9;
+    max-height: 300px;
+}
+
+:root[theme="midnight"] .postsList {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 30px 0;
+}
+
 :root[theme="midnight"] .blogs {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
+    padding: 20px 0;
+}
 
+@media screen and (max-width: 768px) {
+    :root[theme="midnight"] .blogs {
+        justify-content: center;
+    }
 }
 
 :root[theme="midnight"] .card {
-    background-color: #182B3F;
+    background: var(--card-bg);
     width: 300px;
     display: flex;
     flex-direction: column;
     text-decoration: none;
     color: inherit;
     gap: 10px;
-    border-radius: 15px;
+    border-radius: var(--border-radius);
+    overflow: hidden;
 }
 
-:root[theme="midnight"] .card img {
-    max-width: 100%;
-}
-
-:root[theme="midnight"] .card img,
-:root[theme="midnight"] section.post img {
+:root[theme="midnight"] .card > a img {
     aspect-ratio: 16/9;
     max-height: 256px;
+    width: 100%;
+    max-width: 100%;
+    transition: transform 0.3s;
+}
+
+:root[theme="midnight"] .card:hover > a img {
+    transform: scale(1.1);
 }
 
 :root[theme="midnight"] a.author {
     display: flex;
     align-items: center;
     gap: 10px;
-    padding-block: 10px;
+    padding: 10px;
+    margin-left: -10px;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: bold;
+    transition: background 0.3s;
+    border-radius: var(--border-radius);
 }
 
-:root[theme="midnight"] .authorAvatar {
+:root[theme="midnight"] a.author:hover {
+    background: var(--card-info-hover-bg);
+    backdrop-filter: var(--blur);
+}
+
+:root[theme="midnight"] a.author > .authorAvatar {
     width: 32px;
     height: 32px;
     border-radius: 50%;
     object-fit: cover;
 }
 
-:root[theme="midnight"] .card .tags {
+:root[theme="midnight"] .tags {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
-    padding: 10px;
+    padding: 10px 0;
 }
 
-:root[theme="midnight"] .card .tag {
-    background-color: #3c77ff;
+:root[theme="midnight"] a.tag {
+    text-decoration: none;
+    text-transform: uppercase;
+    background: var(--tag-bg);
+    backdrop-filter: var(--blur);
     padding: 5px 10px;
     border-radius: 5px;
-    color: #f2f2f2;
-    font-size: 0.8rem;
+    color: var(--tag-color);
+    font-size: 0.95rem;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+:root[theme="midnight"] a.tag:hover {
+    background: var(--tag-hover-bg);
 }
 
 :root[theme="midnight"] .card .info,
@@ -119,4 +204,62 @@
 
 :root[theme="midnight"] .card .details {
     font-size: 1rem;
+}
+
+:root[theme="midnight"] .card .info h3 {
+    font-size: 1.6rem;
+    font-weight: bold;
+    transition: background 0.3s;
+    border-radius: var(--border-radius);
+}
+
+:root[theme="midnight"] .card .info h3:hover {
+    background: var(--card-info-hover-bg);
+    backdrop-filter: var(--blur);
+}
+
+:root[theme="midnight"] .card .info h3 a {
+    text-decoration: none;
+    color: inherit;
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    display: inline-block;
+}
+
+:root[theme="midnight"] section.post,
+:root[theme="midnight"] section.author,
+:root[theme="midnight"] section.tag {
+    padding: 30px 0;
+}
+
+:root[theme="midnight"] section.post > img:first-child {
+    aspect-ratio: 16/9;
+    max-height: 300px;
+}
+
+:root[theme="midnight"] section > div.info {
+    background-color: var(--main-bg);
+    border-radius: var(--border-radius);
+    padding: 20px;
+    gap: 30px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+:root[theme="midnight"] section > div.info > img {
+    aspect-ratio: 16/9;
+}
+
+:root[theme="midnight"] section > div.info > img.authorAvatar {
+    flex-grow: 0;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+}
+
+:root[theme="midnight"] section > div.info > .text {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
 }

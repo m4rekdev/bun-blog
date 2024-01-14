@@ -23,26 +23,28 @@
 <body>
     {{ components.navbar }}
 
-    <section class="post">
-        {{ post.coverImageHtml }}
+    <main>
+        <section class="header">
+            <div class="info">
+                {{ post.coverImageHtml }}
 
-        <h1>{{ post.title }}</h1>
-        <p>{{ post.description }}</p>
-
-        <a href="{{ baseURL }}/authors/{{ post.author.id }}" class="author">
-            <img src="{{ post.author.avatar }}" alt="{{ post.author.displayName }}" class="authorAvatar">
-            {{ post.author.displayName }}
-        </a>
-
-        <p>{{ post.date }}</p>
-        
-        <div class="postTags flex items-center">
-            {{ post.tagsHtml }}
-        </div>
-
-        <div class="content">
-            {{ post.content }}
-        </div>
-    </section>
+                <div class="text">
+                    <div class="tags">{{ post.tagsHtml }}</div>
+                    <h1>{{ post.title }}</h1>
+                    <a href="{{ baseURL }}/authors/{{ post.author.id }}" class="author">
+                        {{ post.author.avatarHtml }}
+                        {{ post.author.displayName }}
+                    </a>
+                    <p>{{ post.formattedDate }}</p>
+                    <p>{{ post.description }}</p>
+                </div>
+            </div>
+        </section>
+        <section class="post">
+            <div class="content">
+                {{ post.content }}
+            </div>
+        </section>
+    </main>
 </body>
 </html>

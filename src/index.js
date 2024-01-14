@@ -8,8 +8,8 @@ const htmlHeaders = new Headers();
 htmlHeaders.set('Content-Type', 'text/html;charset=utf-8');
 
 setInterval(async () => {
-    const postsCount = await posts.parse();
-    console.log(`Refreshed ${postsCount} posts!`);
+    const parsedData = await parseData.parse();
+    console.log(`Refreshed ${parsedData.posts} posts, ${parsedData.authors} authors and ${parsedData.tags} tags.`);
 }, templates.postRefreshInterval * 1000);
 
 const server = Bun.serve({

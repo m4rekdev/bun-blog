@@ -10,7 +10,7 @@
     <meta property="og:title" content="{{ post.title }}">
     <meta property="og:type" content="article" />
     <meta property="og:image" content="{{ post.coverImage }}">
-    <meta property="og:url" content="https://pgq8940f-3000.euw.devtunnels.ms/posts/{{ post.id }}">
+    <meta property="og:url" content="https://9pp50p7g-3000.euw.devtunnels.ms/posts/{{ post.id }}">
     <meta name="twitter:card" content="summary_large_image">
 
     <meta property="og:description" content="{{ post.description }}">
@@ -18,14 +18,14 @@
     <meta name="twitter:image:alt" content="{{ post.title }}">
 
     <title>Author Example Author | Bun Blog</title>
-    <link rel="stylesheet" href="https://pgq8940f-3000.euw.devtunnels.ms/assets/css/styles.css" />
+    <link rel="stylesheet" href="https://9pp50p7g-3000.euw.devtunnels.ms/assets/css/styles.css" />
 </head>
 <body>
     <nav>
-    <a href="https://pgq8940f-3000.euw.devtunnels.ms"><h1>Bun Blog</h1></a>
+    <a href="https://9pp50p7g-3000.euw.devtunnels.ms"><h1>Bun Blog</h1></a>
 
     <ul>
-      <li><a href="https://pgq8940f-3000.euw.devtunnels.ms/rss.xml">RSS</a></li>
+      <li><a href="https://9pp50p7g-3000.euw.devtunnels.ms/rss.xml">RSS</a></li>
       <li>
         <select name="themeSelect" id="themeSelect">
           <option value="default" selected>Default</option>
@@ -37,21 +37,47 @@
     </ul>
 </nav>
 
-<script src="https://pgq8940f-3000.euw.devtunnels.ms/assets/js/navScroll.js"></script>
+<script src="https://9pp50p7g-3000.euw.devtunnels.ms/assets/js/navScroll.js"></script>
 
-    <section class="author">
-        {{ author.avatarHtml }}
+    <main>
+        <section class="header">
+            <div class="info">
+                <img class="authorAvatar" src="{{ baseURL }}/assets/images/example-cover.jpg" alt="Example Author">
 
-        <h1>Example Author</h1>
-        
-        <div class="content">
-            <p>I'm an example author. The description has full Markdown support, just like posts.</p>
+                <div class="text">
+                    <h1>Author Example Author</h1>
+                    <em class="postsCount">1 posts</em>
+                    <div class="content">
+                        <p>I'm an example author. The description has full Markdown support, just like posts.</p>
 
-        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="author">
+            <div class="blogs">
+                <div data-aos="fade-up" class="card">
+    <a href="https://9pp50p7g-3000.euw.devtunnels.ms/posts/example"><img src="{{ baseURL }}/assets/images/example-cover.jpg" alt="Example Post"></a>
 
-        <div class="posts">
-            {"title":"Example Post","author":"Example Author","tags":[{"displayName":"bun-blog"},{"displayName":"Example Tag"}]}
-        </div>
-    </section>
+    <span class="info">
+        <div class="tags"><a href="{{ baseURL }}/tags/bun-blog" class="tag">bun-blog</a><a href="{{ baseURL }}/tags/example" class="tag">Example Tag</a></div>
+
+        <h3>
+            <a href="https://9pp50p7g-3000.euw.devtunnels.ms/posts/example">Example Post</a>
+        </h3>
+
+        <span class="details">
+            <a href="https://9pp50p7g-3000.euw.devtunnels.ms/authors/example" class="author">
+                <img class="authorAvatar" src="{{ baseURL }}/assets/images/example-cover.jpg" alt="Example Author">
+                Example Author
+            </a>
+            <p>28.09.2023 19:42</p>
+            <p>this post shows what bun blog can do</p>
+        </span>
+    </span>
+</div>
+            </div>
+        </section>
+    </main>
 </body>
 </html>

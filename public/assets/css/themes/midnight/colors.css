@@ -1,0 +1,17 @@
+:root[theme="midnight"] {
+    --main-bg: #111114;
+    --header-bg: rgb(38, 38, 76);
+
+    --nav-scrolled-bg: rgb(38, 38, 76, 0.5);
+    --nav-item-hover-bg: rgba(51, 51, 102, 0.75);
+
+    --card-bg: #1a1a2e;
+    --card-info-hover-bg: rgb(38, 38, 76, 0.75);
+
+    --tag-bg: rgb(38, 38, 76, 0.75);
+    --tag-hover-bg: rgb(38, 38, 76);
+    
+    --text-color: #eee;
+    --link-color: #7c64ff;
+    --tag-color: #7c64ff;
+}

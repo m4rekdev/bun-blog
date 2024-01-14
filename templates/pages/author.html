@@ -23,18 +23,25 @@
 <body>
     {{ components.navbar }}
 
-    <section class="author">
-        {{ author.avatarHtml }}
+    <main>
+        <section class="header">
+            <div class="info">
+                {{ author.avatarHtml }}
 
-        <h1>{{ author.displayName }}</h1>
-        
-        <div class="content">
-            {{ author.content }}
-        </div>
-
-        <div class="posts">
-            {{ author.posts }}
-        </div>
-    </section>
+                <div class="text">
+                    <h1>Author {{ author.displayName }}</h1>
+                    <em class="postsCount">{{ author.postsCount }} posts</em>
+                    <div class="content">
+                        {{ author.content }}
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="author">
+            <div class="blogs">
+                {{ author.postsHtml }}
+            </div>
+        </section>
+    </main>
 </body>
 </html>

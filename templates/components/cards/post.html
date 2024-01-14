@@ -1,4 +1,4 @@
-<div data-aos="fade-up" class="card">
+<div class="card">
     <a href="{{ baseURL }}/posts/{{ post.id }}">{{ post.coverImageHtml }}</a>
 
     <span class="info">
@@ -10,10 +10,10 @@
 
         <span class="details">
             <a href="{{ baseURL }}/authors/{{ post.author.id }}" class="author">
-                <img src="{{ post.author.avatar }}" alt="{{ post.author.displayName }}" class="authorAvatar">
+                {{ post.author.avatarHtml }}
                 {{ post.author.displayName }}
             </a>
-            <p>{{ post.date }}</p>
+            <p>{{ post.formattedDate }}</p>
             <p>{{ post.description }}</p>
         </span>
     </span>

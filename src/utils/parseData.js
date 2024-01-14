@@ -38,6 +38,9 @@ async function parse() {
         const authorMetadata = fm(author);
         if (authorMetadata.attributes.draft) continue;
 
+        if (authorMetadata.attributes?.avatar) authorMetadata.attributes.avatarHtml = `<img class="authorAvatar" src="${authorMetadata.attributes.avatar}" alt="${authorMetadata.attributes.displayName}">`;
+        else authorMetadata.attributes.avatarHtml = '';
+
         const { window } = new JSDOM('');
         const purify = DOMPurify(window);
         const authorParsed = purify.sanitize(marked.parse(authorMetadata.body));
@@ -46,7 +49,9 @@ async function parse() {
         authorData.id = authorFileName.toLowerCase().replace(/([^a-z0-9_-])\W?/gi, '-').substring(0, authorFileName.length - 3);
 
         await addExternalTemplate('authors', authorData.id, authorData);
-        if (!authors.map(author => author.id).includes(authorData.id)) authors.push(authorData);
+
+        if (authors.map(author => author.id).includes(authorData.id)) console.log('WARNING | You have more than one user with the same id. Only the first one was registered,')
+        else authors.push(authorData);
     }
 
     const mdTags = await walk(join(import.meta.dir, '../../tags'));
@@ -66,6 +71,9 @@ async function parse() {
 
         const tagMetadata = fm(tag);
         if (tagMetadata.attributes.draft) continue;
+
+        if (tagMetadata.attributes?.image)
+            tagMetadata.attributes.imageHtml = `<img src="${tagMetadata.attributes.image}" alt="${tagMetadata.attributes.displayName}">`;
 
         const { window } = new JSDOM('');
         const purify = DOMPurify(window);
@@ -100,49 +108,53 @@ async function parse() {
         const purify = DOMPurify(window);
         const postParsed = purify.sanitize(marked.parse(postMetadata.body));
 
-        if (templates.authors?.[postMetadata.attributes.author]) postMetadata.attributes.author = templates.authors[postMetadata.attributes.author];
-        else postMetadata.attributes.author = { displayName: postMetadata.attributes.author, id: postMetadata.attributes.author.toLowerCase().replace(/([^a-z0-9_-])\W?/gi, '-'), avatar: 'https://upload.wikimedia.org/wikipedia/commons/2/2c/Default_pfp.svg', content: '' };
-        
-        if (templates.tags)
-            for (const tag of postMetadata.attributes.tags) {                
-                if (templates.tags[tag]) postMetadata.attributes.tags[postMetadata.attributes.tags.indexOf(tag)] = templates.tags[tag];
-                else postMetadata.attributes.tags[postMetadata.attributes.tags.indexOf(tag)] = { displayName: tag, id: tag.toLowerCase().replace(/([^a-z0-9_-])\W?/gi, '-'), image: '', content: '' };
-            }
+        postMetadata.attributes.id = postFileName.toLowerCase().replace(/([^a-z0-9_-])\W?/gi, '-').substring(0, postFileName.length - 3);
+        postMetadata.attributes.formattedDate = formatDate(new Date(postMetadata.attributes.editedDate || postMetadata.attributes.pubDate));
+        postMetadata.attributes.date = new Date(postMetadata.attributes.editedDate || postMetadata.attributes.pubDate);
 
         const postData = { ...postMetadata.attributes, fileName: postFileName, content: postParsed };
         posts.push(postData);
     }
 
+    posts.sort((a, b) => new Date(a.date) - new Date(b.date)).reverse();
+
     for (const post of posts) {
         const template = templates.pages.post;
 
-        post.id = post.fileName.toLowerCase().replace(/([^a-z0-9_-])\W?/gi, '-').substring(0, post.fileName.length - 3);
-        post.date = formatDate(new Date(post.editedDate || post.pubDate));
-
         if (post.coverImage) post.coverImageHtml = `<img src="${post.coverImage}" alt="${post.title}">`;
         else post.coverImageHtml = '';
+
+        if (post.author) {
+            const postAuthor = post.author.toLowerCase().replace(/([^a-z0-9_-])\W?/gi, '-');
+
+            if (Object.values(templates.authors).filter(author => author.id === postAuthor).length)
+                post.author = Object.values(templates.authors).filter(author => author.id === postAuthor)[0];
+            else {
+                post.author = { displayName: postAuthor, id: postAuthor, avatar: '', avatarHtml: '', content: '' };
+                console.log(`WARNING | Author ${postAuthor} doesn't have a configuration file. Using a blank template for it.`)
+            }
+        
+            if (!authors.includes(post.author)) authors.push(post.author);
+        }
 
         post.tagsHtml = '';
 
         if (post.tags) {
             for (const tagItem of post.tags) {
-                const tag = post.tags[post.tags.indexOf(tagItem)];
+                let tag;
+
+                if (Object.values(templates.tags).filter(tag => tag.id === tagItem.toLowerCase().replace(/([^a-z0-9_-])\W?/gi, '-')).length)
+                    tag = Object.values(templates.tags).filter(tag => tag.id === tagItem.toLowerCase().replace(/([^a-z0-9_-])\W?/gi, '-'))[0];
+                else {
+                    tag = { displayName: tagItem.toLowerCase().replace(/([^a-z0-9_-])\W?/gi, '-'), id: tagItem.toLowerCase().replace(/([^a-z0-9_-])\W?/gi, '-'), image: '', imageHtml: '', content: '' };
+                    console.log(`WARNING | Tag ${tagItem} doesn't have a configuration file. Using a blank template for it.`)
+                }
+
                 if (!categories.map(tag => tag.id).includes(tag.id)) categories.push(tag);
 
-                if (tag.image) tag.imageHtml = `<img src="${tag.image}" alt="${tag.displayName}" class="tagImage">`;
-                else tag.imageHtml = '';
-
-                tag.posts = posts.filter(post => post.tags.map(tag => tag.id).includes(tag.id)).map(post => post = { title: post.title, author: post.author.displayName, tags: post.tags.map(tag => tag = { displayName: tag.displayName }) }).map(post => JSON.stringify(post)).join(',');
                 post.tagsHtml += `<a href="{{ baseURL }}/tags/${tag.id}" class="tag">${tag.displayName}</a>`;
             }
-
-            post.tagsFormatted = post.tags.map(tag => tag = tag.displayName);
         }
-
-        post.author.posts = posts.filter(p => p.author.id === post.author.id).map(post => post = { title: post.title, author: post.author.displayName, tags: post.tags.map(tag => tag = { displayName: tag.displayName }) }).map(post => JSON.stringify(post)).join(',');
-
-        if (post.author.avatar) post.author.avatarHtml = `<img src="${post.author.avatar}" alt="${post.author.displayName}" class="authorAvatar">`;
-        if (!authors.map(author => author.id).includes(post.author.id)) authors.push(post.author);
 
         const variablesTemplate = { post };
 
@@ -171,6 +183,22 @@ async function parse() {
     await Bun.write(join(import.meta.dir, `../../public/rss.xml`), feed.xml());
 
     for (const author of authors) {
+        const postCardTemplate = templates.components.cards.post;
+        const authorPosts = posts.filter(post => post.author.id === author.id);
+        
+        author.posts = [];
+
+        if (authorPosts.length)
+            for (const post of authorPosts) {
+                const variablesTemplate = { post };
+                const postHtml = replaceTemplates(postCardTemplate, variablesTemplate);
+                author.posts.push(postHtml);
+            }
+
+        author.posts.sort((a, b) => new Date(a.date) - new Date(b.date)).reverse();
+        author.postsHtml = author.posts.join('\n');
+        author.postsCount = author.posts.length;
+
         const template = templates.pages.author;
         const variablesTemplate = { author };
 
@@ -182,6 +210,22 @@ async function parse() {
     }
 
     for (const tag of categories) {
+        const postCardTemplate = templates.components.cards.post;
+        const tagPosts = posts.filter(post => post.tags?.includes(tag.id));
+        
+        tag.posts = [];
+
+        if (tagPosts.length)
+            for (const post of tagPosts) {
+                const variablesTemplate = { post };
+                const postHtml = replaceTemplates(postCardTemplate, variablesTemplate);
+                tag.posts.push(postHtml);
+            }
+
+        tag.posts.sort((a, b) => new Date(a.date) - new Date(b.date)).reverse().join('\n');
+        tag.postsHtml = tag.posts.join('\n');
+        tag.postsCount = tag.posts.length;
+            
         const template = templates.pages.tag;
         const variablesTemplate = { tag };
 
