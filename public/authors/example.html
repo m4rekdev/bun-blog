@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" theme="midnight">
+<html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,7 +11,7 @@
     <meta property="og:title" content="{{ post.title }}">
     <meta property="og:type" content="article" />
     <meta property="og:image" content="{{ post.coverImage }}">
-    <meta property="og:url" content="https://9pp50p7g-3000.euw.devtunnels.ms/posts/{{ post.id }}">
+    <meta property="og:url" content="http://127.0.0.1:3000/posts/{{ post.id }}">
     <meta name="twitter:card" content="summary_large_image">
 
     <meta property="og:description" content="{{ post.description }}">
@@ -18,56 +19,60 @@
     <meta name="twitter:image:alt" content="{{ post.title }}">
 
     <title>Author Example Author | Bun Blog</title>
-    <link rel="stylesheet" href="https://9pp50p7g-3000.euw.devtunnels.ms/assets/css/styles.css" />
+    <link rel="stylesheet" href="http://127.0.0.1:3000/assets/css/styles.css" />
 </head>
+
 <body>
     <nav>
-    <a href="https://9pp50p7g-3000.euw.devtunnels.ms"><h1>Bun Blog</h1></a>
+  <a href="http://127.0.0.1:3000">
+    <h1>Bun Blog</h1>
+  </a>
 
-    <ul>
-      <li><a href="https://9pp50p7g-3000.euw.devtunnels.ms/rss.xml">RSS</a></li>
-      <li>
-        <select name="themeSelect" id="themeSelect">
-          <option value="default" selected>Default</option>
-          <option value="light">Light</option>
-          <option value="dark">Dark</option>
-          <!-- {{ themeOptionsHtml}} -->
-        </select>
-      </li>
-    </ul>
+  <ul>
+    <li><a href="http://127.0.0.1:3000/rss.xml">RSS</a></li>
+    <li>
+      <select name="themeSelect" id="themeSelect">
+        <option value="default" selected>Default</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+        <!-- {{ themeOptionsHtml}} -->
+      </select>
+    </li>
+  </ul>
 </nav>
 
-<script src="https://9pp50p7g-3000.euw.devtunnels.ms/assets/js/navScroll.js"></script>
+<script src="http://127.0.0.1:3000/assets/js/navScroll.js"></script>
 
-    <main>
-        <section class="header">
-            <div class="info">
-                <img class="authorAvatar" src="{{ baseURL }}/assets/images/example-cover.jpg" alt="Example Author">
 
-                <div class="text">
-                    <h1>Author Example Author</h1>
-                    <em class="postsCount">1 posts</em>
-                    <div class="content">
-                        <p>I'm an example author. The description has full Markdown support, just like posts.</p>
+    <section class="header">
+        <div class="info">
+            <img class="authorAvatar" src="{{ baseURL }}/assets/images/example-cover.jpg" alt="Example Author">
 
-                    </div>
+            <div class="text">
+                <h1>Author Example Author</h1>
+                <em class="postsCount">1 posts</em>
+                <div class="content">
+                    <p>I'm an example author. The description has full Markdown support, just like posts.</p>
+
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
+    <main>
         <section class="author">
             <div class="blogs">
-                <div data-aos="fade-up" class="card">
-    <a href="https://9pp50p7g-3000.euw.devtunnels.ms/posts/example"><img src="{{ baseURL }}/assets/images/example-cover.jpg" alt="Example Post"></a>
+                <div class="card">
+    <a href="http://127.0.0.1:3000/posts/example"><img src="{{ baseURL }}/assets/images/example-cover.jpg" alt="Example Post"></a>
 
     <span class="info">
         <div class="tags"><a href="{{ baseURL }}/tags/bun-blog" class="tag">bun-blog</a><a href="{{ baseURL }}/tags/example" class="tag">Example Tag</a></div>
 
         <h3>
-            <a href="https://9pp50p7g-3000.euw.devtunnels.ms/posts/example">Example Post</a>
+            <a href="http://127.0.0.1:3000/posts/example">Example Post</a>
         </h3>
 
         <span class="details">
-            <a href="https://9pp50p7g-3000.euw.devtunnels.ms/authors/example" class="author">
+            <a href="http://127.0.0.1:3000/authors/example" class="author">
                 <img class="authorAvatar" src="{{ baseURL }}/assets/images/example-cover.jpg" alt="Example Author">
                 Example Author
             </a>
@@ -80,4 +85,5 @@
         </section>
     </main>
 </body>
+
 </html>

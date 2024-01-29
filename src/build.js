@@ -7,7 +7,7 @@ import { join, relative, dirname } from 'path';
 import walk from './utils/walk.js';
 import { JSDOM } from 'jsdom';
 import replaceTemplates from './utils/replaceTemplates.js';
-import templates from './utils/templates.js';
+import { templates } from './utils/templates.js';
 import posts from "./utils/parseData.js";
 
 await posts.parse();
@@ -26,9 +26,9 @@ for await (const publicFile of publicFiles) {
     await fs.mkdir(dirname(join(import.meta.dir, `../build/${cleanPath}`)), { recursive: true });
 
     let fileContents = await Bun.file(join(import.meta.dir, `../public/${cleanPath}`)).text();
-    if (cleanPath.match(/^(.(.*\.html))*$/)?.length) {
-        fileContents = replaceTemplates(fileContents);
+    fileContents = replaceTemplates(fileContents);
 
+    if (cleanPath.match(/^(.(.*\.html))*$/)?.length) {
         const { document } = new JSDOM(fileContents).window;
         const links = document.querySelectorAll('a[href]');
 
@@ -55,7 +55,7 @@ for await (const publicFile of publicFiles) {
 
 await fs.mkdir(join(import.meta.dir, `../build/errors`), { recursive: true });
 
-for (const [ key, value ] of Object.entries(templates.errorPages)) {
+for (const [ key, value ] of Object.entries(templates.pages.error)) {
     let fileContents = value;
     fileContents = replaceTemplates(fileContents);
 

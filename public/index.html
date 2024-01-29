@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" theme="{{ defaultTheme }}">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -23,17 +23,17 @@
   <body>
     {{ components.navbar }}
 
+    <section class="header">
+      <h1>Welcome to {{ siteName }}!</h1>
+      <p>{{ siteDescription }}</p>
+
+      <div class="buttons">
+          <a href="https://github.com/marekk-gh/bun-blog" class="btn primary">GitHub</a>
+          <a href="{{ baseURL }}/rss.xml" class="btn secondary">RSS</a>
+      </div>
+    </section>
+
     <main>
-      <section class="header">
-          <h1>Welcome to {{ siteName }}!</h1>
-          <p>{{ siteDescription }}</p>
-
-          <div class="buttons">
-              <a href="https://github.com/marekk-gh/bun-blog" class="btn primary">GitHub</a>
-              <a href="{{ baseURL }}/rss.xml" class="btn secondary">RSS</a>
-          </div>
-      </section>
-
       <section class="postsList">
         <h1>Posts</h1>
 
@@ -44,5 +44,6 @@
     </main>
 
     <script src="{{ baseURL }}/assets/js/imageLoad.js"></script>
+    <script src="{{ baseURL }}/assets/js/theme.js" type="module"></script>
   </body>
 </html>

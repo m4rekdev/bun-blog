@@ -4,10 +4,10 @@ import walk from './walk.js';
 const templates = {};
 const externalTemplates = {};
 
-const pkg = await Bun.file(join(import.meta.dir, '../../package.json')).json();
-templates.version = pkg.version;
-
 async function loadTemplates() {
+    const pkg = await Bun.file(join(import.meta.dir, '../../package.json')).json();
+    templates.version = pkg.version;
+
     const configFile = Bun.file(join(import.meta.dir, '../../config.json'));
 
     if (!await configFile.exists()) {
@@ -27,6 +27,15 @@ async function loadTemplates() {
 
     for await (const templateFile of templateFiles) {
         let templateName = relative(join(import.meta.dir, '../../templates'), templateFile);
+        
+        if (templateName.endsWith('.example')) {
+            const exampleFile = Bun.file(templateFile);
+            const templateFilePath = templateFile.replace(/\.example$/g, '');
+
+            const templateFile2 = Bun.file(templateFilePath);
+            if (!(await templateFile2.exists())) await Bun.write(templateFilePath, exampleFile);
+        }
+
         if (!templateName.endsWith('.html')) continue;
 
         templateName = templateName.substring(0, templateName.length - 5);
@@ -56,8 +65,4 @@ async function addExternalTemplate(type, name, content) {
     await loadTemplates();
 }
 
-await loadTemplates();
-setInterval(async () => await loadTemplates(), 5000);
-
-export default templates;
-export { addExternalTemplate };
+export { templates, addExternalTemplate, loadTemplates };

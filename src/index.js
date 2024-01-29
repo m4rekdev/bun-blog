@@ -1,11 +1,10 @@
-import { parse } from "url";
 import { join } from 'path';
 import replaceTemplates from "./utils/replaceTemplates.js";
-import templates from "./utils/templates.js";
+import { templates, loadTemplates } from "./utils/templates.js";
 import parseData from "./utils/parseData.js";
 
-const htmlHeaders = new Headers();
-htmlHeaders.set('Content-Type', 'text/html;charset=utf-8');
+await loadTemplates();
+setInterval(async () => await loadTemplates(), 5000);
 
 setInterval(async () => {
     const parsedData = await parseData.parse();
@@ -16,7 +15,7 @@ const server = Bun.serve({
     port: templates.server.port,
     hostname: templates.server.host,
     async fetch(req) {
-        let filePath = "public" + parse(req.url).pathname;
+        let filePath = "public" + new URL(req.url).pathname;
 
         //returns 404 if the user requests index.html specifically
         if (filePath === "public/index.html") return await returnError(404);
@@ -30,14 +29,15 @@ const server = Bun.serve({
         const file = Bun.file(join(import.meta.dir, `../${filePath}`));
         if (!(await file.exists())) return await returnError(404);
 
-        //if it's an html file, replace the variables with templates
-        if (filePath.match(/^(.(.*\.html))*$/)?.length)
-            return new Response(
-                replaceTemplates(await file.text()),
-                { headers: htmlHeaders }
-            );
+        let fileData = file.readable ? await file.text() : file.stream();
 
-        return new Response(file);
+        if (filePath.match(/(\.html|\.json|)$/i)?.length && file.readable) fileData = replaceTemplates(fileData);
+
+
+        const headers = new Headers();
+        headers.set('Content-Type', file.type);
+
+        return new Response(fileData, { headers });
     },
 });
 
@@ -49,8 +49,11 @@ console.log(`Listening on ${server.hostname}:${server.port}`);
 async function returnError(code) {
     const errorPage = replaceTemplates(templates.pages.error[code]);
 
+    const headers = new Headers();
+    headers.set('Content-Type', 'text/html; charset=utf-8');
+
     return new Response(
         errorPage,
-        { headers: htmlHeaders, status: code }
+        { headers: headers, status: code }
     );
 }

@@ -173,9 +173,11 @@ dist
 
 # project-specific
 package-lock.json
-public/posts/*
+public/posts
+public/authors
+public/tags
 public/rss.xml
-build/*
+build
 bun.lockb
-templates/posts/list.html
 config.json
+!templates/*.example

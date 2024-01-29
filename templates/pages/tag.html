@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" theme="{{ defaultTheme }}">
+<html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,23 +21,24 @@
     <title>Tag {{ tag.displayName }} | {{ siteName }}</title>
     <link rel="stylesheet" href="{{ baseURL }}/assets/css/styles.css" />
 </head>
+
 <body>
     {{ components.navbar }}
 
-    <main>
-        <section class="header">
-            <div class="info">
-                {{ tag.imageHtml }}
+    <section class="header">
+        <div class="info">
+            {{ tag.imageHtml }}
 
-                <div class="text">
-                    <h1>Tag {{ tag.displayName }}</h1>
-                    <em class="postsCount">{{ tag.postsCount }} posts</em>
-                    <div class="content">
-                        {{ tag.content }}
-                    </div>
+            <div class="text">
+                <h1>Tag {{ tag.displayName }}</h1>
+                <em class="postsCount">{{ tag.postsCount }} posts</em>
+                <div class="content">
+                    {{ tag.content }}
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
+    <main>
         <section class="tag">
             <div class="blogs">
                 {{ tag.postsHtml }}
@@ -44,4 +46,5 @@
         </section>
     </main>
 </body>
+
 </html>

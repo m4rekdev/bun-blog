@@ -40,7 +40,7 @@
     left: 0;
     z-index: 99;
     padding: 10px 20px;
-    height: 80px;
+    height: 64px;
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -81,18 +81,15 @@
 
 :root[theme="midnight"] nav a:hover {
     background: var(--nav-item-hover-bg);
-    backdrop-filter: var(--blur);
 }
 
 :root[theme="midnight"] .header {
     display: flex;
     flex-direction: column;
     align-items: center;
+    text-align: center;
     gap: 20px;
-    width: calc(100% + 25%);
-    margin-left: -12.5%;
-    padding: 30px 12.5%;
-    padding-top: 110px;
+    padding: 64px 10%;
     background: var(--header-bg);
 }
 
@@ -181,7 +178,6 @@
     text-decoration: none;
     text-transform: uppercase;
     background: var(--tag-bg);
-    backdrop-filter: var(--blur);
     padding: 5px 10px;
     border-radius: 5px;
     color: var(--tag-color);
@@ -239,7 +235,7 @@
 }
 
 :root[theme="midnight"] section > div.info {
-    background-color: var(--main-bg);
+    background: var(--card-bg);
     border-radius: var(--border-radius);
     padding: 20px;
     gap: 30px;
@@ -249,17 +245,21 @@
 
 :root[theme="midnight"] section > div.info > img {
     aspect-ratio: 16/9;
+    max-width: 100%;
+    flex-grow: 1;
+    object-fit: cover;
 }
 
 :root[theme="midnight"] section > div.info > img.authorAvatar {
-    flex-grow: 0;
     aspect-ratio: 1/1;
+    flex-grow: 0;
     border-radius: 50%;
 }
 
 :root[theme="midnight"] section > div.info > .text {
     display: flex;
     flex-direction: column;
+    text-align: start;
     gap: 20px;
     justify-content: center;
 }

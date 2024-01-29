@@ -17,7 +17,7 @@ async function parse() {
           authorsList = [];
 
     const replaceTemplates = (await import('./replaceTemplates.js')).default;
-    const templates = (await import('./templates.js')).default;
+    const templates = (await import('./templates.js')).templates;
     const addExternalTemplate = (await import('./templates.js')).addExternalTemplate;
 
     const mdAuthors = await walk(join(import.meta.dir, '../../authors'));
@@ -170,7 +170,7 @@ async function parse() {
             url: replaceTemplates(`{{ baseURL }}/posts/${post.id}`),
             guid: post.id,
             categories: post.tags,
-            author: post.author,
+            author: post.author.displayName,
             date: post.date
         });
     }

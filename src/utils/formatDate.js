@@ -1,4 +1,4 @@
-import templates from "./templates.js";
+import { templates } from "./templates.js";
 
 function formatDate (inputDate)  {
     if (!inputDate) return '';
