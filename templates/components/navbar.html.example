@@ -1,0 +1,19 @@
+<nav>
+  <a href="{{ baseURL }}">
+    <h1>{{ siteName }}</h1>
+  </a>
+
+  <ul>
+    <li><a href="{{ baseURL }}/rss.xml">RSS</a></li>
+    <li>
+      <select name="themeSelect" id="themeSelect">
+        <option value="default" selected>Default</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+        <!-- {{ themeOptionsHtml}} -->
+      </select>
+    </li>
+  </ul>
+</nav>
+
+<script src="{{ baseURL }}/assets/js/navScroll.js"></script>

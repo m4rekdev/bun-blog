@@ -7,9 +7,11 @@
     "siteImage": "",
 
     "baseURL": "https://blog.example.com",
-    "defaultTheme": "default",
+    "defaultTheme": "midnight",
 
+    "templateRefreshInterval": 5,
     "postRefreshInterval": 300,
+
     "dateString": "MM/dd/yyyy hh:mm tt",
 
     "rss": {
@@ -20,17 +22,6 @@
         "site_url": "{{ baseURL }}",
         "copyright": "Copyright 2023 {{ siteName }}",
         "ttl": 60
-    },
-
-    "errors": {
-        "403": {
-            "title": "Unauthorized",
-            "text": "You can't access the requested file."
-        },
-        "404": {
-            "title": "Not Found",
-            "text": "Couldn't find the requested file."
-        }
     },
 
     "server": {

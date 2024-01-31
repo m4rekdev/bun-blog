@@ -4,7 +4,7 @@ import { templates, loadTemplates } from "./utils/templates.js";
 import parseData from "./utils/parseData.js";
 
 await loadTemplates();
-setInterval(async () => await loadTemplates(), 5000);
+setInterval(async () => await loadTemplates(), templates.templateRefreshInterval * 1000);
 
 setInterval(async () => {
     const parsedData = await parseData.parse();
