@@ -25,8 +25,8 @@
   {{ components.navbar }}
 
   <section class="header">
-    <h1>{{ errors.404.title }}</h1>
-    <p>{{ errors.404.text }}</p>
+    <h1>Not Found</h1>
+    <p>Couldn't find the requested file.</p>
 
     <p><a href="/">Home</a> • <a href="#">Go Back</a></p>
   </section>

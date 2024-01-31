@@ -180,4 +180,7 @@ public/rss.xml
 build
 bun.lockb
 config.json
-!templates/*.example
+
+templates/**/*
+!templates/**/*.example
+templates/lists

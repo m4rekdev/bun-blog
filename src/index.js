@@ -29,10 +29,10 @@ const server = Bun.serve({
         const file = Bun.file(join(import.meta.dir, `../${filePath}`));
         if (!(await file.exists())) return await returnError(404);
 
-        let fileData = file.readable ? await file.text() : file.stream();
+        let fileData;
 
-        if (filePath.match(/(\.html|\.json|)$/i)?.length && file.readable) fileData = replaceTemplates(fileData);
-
+        if (filePath.match(/(\.html|\.json|)$/i)?.length) fileData = replaceTemplates(await file.text());
+        else fileData = file;
 
         const headers = new Headers();
         headers.set('Content-Type', file.type);
