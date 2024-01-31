@@ -233,6 +233,10 @@ async function parse() {
         await Bun.write(join(import.meta.dir, `../../public/tags/${tag.id}.html`), tagHtml);
     }
 
+    const indexTemplate = templates.pages.index;
+    const indexHtml = replaceTemplates(indexTemplate);
+
+    await Bun.write(join(import.meta.dir, `../../public/index.html`), indexHtml);
     await Bun.write(join(import.meta.dir, `../../templates/components/lists/posts.html`), postsList?.join('\n'));
     await Bun.write(join(import.meta.dir, `../../templates/components/lists/authors.html`), authorsList?.join('\n'));
 
