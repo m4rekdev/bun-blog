@@ -7,17 +7,17 @@
 
   <link rel="shortcut icon" href="{{ siteIcon }}" type="image/x-icon">
 
-  <meta property="og:title" content="{{ errors.403.title }} | {{ siteName }}">
+  <meta property="og:title" content="Not Found | {{ siteName }}">
   <meta property="og:type" content="website" />
   <meta property="og:image" content="{{ siteImage }}">
   <meta property="og:url" content="{{ baseURL }}/{{ requestedPath }}">
   <meta name="twitter:card" content="summary_large_image">
 
-  <meta property="og:description" content="{{ errors.403.text }}">
-  <meta property="og:site_name" content="{{ errors.403.title }} | {{ siteName }}">
-  <meta name="twitter:image:alt" content="{{ errors.403.title }} | {{ siteName }}">
+  <meta property="og:description" content="Couldn't find the requested file.">
+  <meta property="og:site_name" content="Not Found | {{ siteName }}">
+  <meta name="twitter:image:alt" content="Not Found | {{ siteName }}">
 
-  <title>{{ errors.403.title }} | {{ siteName }}</title>
+  <title>Not Found | {{ siteName }}</title>
   <link rel="stylesheet" href="{{ baseURL }}/assets/css/styles.css" />
 </head>
 
