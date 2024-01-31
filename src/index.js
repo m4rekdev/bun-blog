@@ -31,8 +31,10 @@ const server = Bun.serve({
 
         let fileData;
 
-        if (filePath.match(/(\.html|\.json|)$/i)?.length) fileData = replaceTemplates(await file.text());
-        else fileData = file;
+        if (filePath.match(/(\.html|\.json|)$/i)?.length) {
+            const fileText = await file.text();
+            fileData = replaceTemplates(fileText);
+        } else fileData = file;
 
         const headers = new Headers();
         headers.set('Content-Type', file.type);
