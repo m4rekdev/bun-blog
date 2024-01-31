@@ -181,6 +181,6 @@ build
 bun.lockb
 config.json
 
-templates/**/*
+templates/*
+templates/components/lists/*
 !templates/**/*.example
-templates/lists
