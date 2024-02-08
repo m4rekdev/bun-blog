@@ -29,17 +29,16 @@ const server = Bun.serve({
         const file = Bun.file(join(import.meta.dir, `../${filePath}`));
         if (!(await file.exists())) return await returnError(404);
 
-        let fileData;
+        if (filePath.match(/(\.html|\.json|\.js|)$/i)?.length) {
+            const fileText = replaceTemplates(await file.text());
 
-        if (filePath.match(/(\.html|\.json|)$/i)?.length) {
-            const fileText = await file.text();
-            fileData = replaceTemplates(fileText);
-        } else fileData = file;
+            const headers = new Headers();
+            headers.set('Content-Type', file.type);
 
-        const headers = new Headers();
-        headers.set('Content-Type', file.type);
+            return new Response(fileText, { headers });
+        }
 
-        return new Response(fileData, { headers });
+        return new Response(file);
     },
 });
 
