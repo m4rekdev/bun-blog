@@ -29,7 +29,7 @@ const server = Bun.serve({
         const file = Bun.file(join(import.meta.dir, `../${filePath}`));
         if (!(await file.exists())) return await returnError(404);
 
-        if (filePath.match(/(\.html|\.json|\.js|)$/i)?.length) {
+        if (filePath.match(/(\.html|\.json|\.js)$/i)?.length) {
             const fileText = replaceTemplates(await file.text());
 
             const headers = new Headers();

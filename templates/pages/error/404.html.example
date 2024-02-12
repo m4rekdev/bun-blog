@@ -30,6 +30,9 @@
 
     <p><a href="/">Home</a> • <a href="#">Go Back</a></p>
   </section>
+
+  <script src="{{ baseURL }}/assets/js/imageLoad.js"></script>
+  <script src="{{ baseURL }}/assets/js/theme.js" type="module"></script>
 </body>
 
 </html>
