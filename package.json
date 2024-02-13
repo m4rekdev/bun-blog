@@ -1,6 +1,6 @@
 {
   "name": "bun-blog",
-  "version": "v0.6 (Dev)",
+  "version": "v0.7 (Dev)",
   "module": "index.js",
   "type": "module",
   "devDependencies": {

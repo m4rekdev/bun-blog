@@ -50,7 +50,7 @@ async function parse() {
 
         await addExternalTemplate('authors', authorData.id, authorData);
 
-        if (authors.map(author => author.id).includes(authorData.id)) console.log('WARNING | You have more than one user with the same id. Only the first one was registered,')
+        if (authors.map(author => author.id).includes(authorData.id)) console.log('WARNING | You have more than one user with the same id. Only the first one was registered.')
         else authors.push(authorData);
     }
 
@@ -173,6 +173,8 @@ async function parse() {
             author: post.author.displayName,
             date: post.date
         });
+
+        await addExternalTemplate('posts', post.id, post);
     }
 
     const rssData = JSON.parse(replaceTemplates(JSON.stringify(templates.rss)));
@@ -207,6 +209,8 @@ async function parse() {
 
         const cardHtml = replaceTemplates(templates.components.cards.author, variablesTemplate);
         authorsList.push(cardHtml);
+
+        await addExternalTemplate('authors', author.id, author);
     }
 
     for (const tag of categories) {
@@ -231,6 +235,8 @@ async function parse() {
 
         const tagHtml = replaceTemplates(template, variablesTemplate);
         await Bun.write(join(import.meta.dir, `../../public/tags/${tag.id}.html`), tagHtml);
+
+        await addExternalTemplate('tags', tag.id, tag);
     }
 
     const indexTemplate = templates.pages.index;
