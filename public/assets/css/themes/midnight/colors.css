@@ -1,5 +1,7 @@
 :root[theme="midnight"] {
     --main-bg: #111114;
+    --secondary-bg: #1f1f24;
+    --tertiary-bg: #28282e;
     --header-bg: rgb(38, 38, 76);
 
     --nav-scrolled-bg: rgb(38, 38, 76, 0.5);

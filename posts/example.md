@@ -11,7 +11,7 @@ tags:
 - example
 ---
 
-## *Bun Blog uses markdown for post text.*
+***Bun Blog uses markdown for post text.***
 
 # Text
 
@@ -22,14 +22,16 @@ This is on another line.
 
 You can also use [links](https://example.com), `inline code blocks` and normal code blocks.
 
-Code block example:
+**Code block example:**
 ```js
 console.log('hello world!');
 ```
 
 # Images
 
-![image](https://images.pexels.com/photos/18709783/pexels-photo-18709783/free-photo-of-sunlight-behind-green-tree-leaves.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1)
+![image](https://images.pexels.com/photos/18709783/pexels-photo-18709783/free-photo-of-sunlight-behind-green-tree-leaves.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1) image caption
+
+text after image
 
 # Tables
 

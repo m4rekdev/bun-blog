@@ -19,6 +19,7 @@ async function parse() {
     const replaceTemplates = (await import('./replaceTemplates.js')).default;
     const templates = (await import('./templates.js')).templates;
     const addExternalTemplate = (await import('./templates.js')).addExternalTemplate;
+    const loadTemplates = (await import('./templates.js')).loadTemplates;
 
     const mdAuthors = await walk(join(import.meta.dir, '../../authors'));
 
@@ -239,12 +240,15 @@ async function parse() {
         await addExternalTemplate('tags', tag.id, tag);
     }
 
+    await Bun.write(join(import.meta.dir, `../../templates/components/lists/posts.html`), postsList?.join('\n'));
+    await Bun.write(join(import.meta.dir, `../../templates/components/lists/authors.html`), authorsList?.join('\n'));
+
+    await loadTemplates();
+
     const indexTemplate = templates.pages.index;
     const indexHtml = replaceTemplates(indexTemplate);
 
     await Bun.write(join(import.meta.dir, `../../public/index.html`), indexHtml);
-    await Bun.write(join(import.meta.dir, `../../templates/components/lists/posts.html`), postsList?.join('\n'));
-    await Bun.write(join(import.meta.dir, `../../templates/components/lists/authors.html`), authorsList?.join('\n'));
 
     return { posts: posts.length, authors: authors.length, tags: categories.length };
 }

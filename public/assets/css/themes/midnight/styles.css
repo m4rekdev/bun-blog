@@ -24,10 +24,49 @@
     max-width: 100%;
 }
 
+:root[theme="midnight"] p > code {
+    font-size: 0.9em;
+    background: var(--tertiary-bg);
+    padding: 3px 5px;
+    border-radius: var(--border-radius);
+}
+
+:root[theme="midnight"] pre > code {
+    background: var(--card-bg);
+    font-size: 0.9em;
+    padding: 10px;
+    border-radius: var(--border-radius);
+}
+
 :root[theme="midnight"] img {
-    max-width: 90%;
+    max-width: 100%;
+    margin-right: auto;
     object-fit: cover;
     border-radius: var(--border-radius);
+    position: relative;
+}
+
+:root[theme="midnight"] p:has(img) {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    /*text-align: center;*/
+    font-style: italic;
+    font-size: 0.9em;
+}
+
+:root[theme="midnight"] table {
+    background: var(--secondary-bg);
+}
+
+:root[theme="midnight"] table th {
+    background: var(--tertiary-bg);
+    margin: 20px;
+    padding: 10px;
+}
+
+:root[theme="midnight"] table td {
+    padding: 10px;
 }
 
 :root[theme="midnight"] main {
@@ -149,6 +188,7 @@
     padding: 10px;
     margin-left: -10px;
     text-decoration: none;
+    gap: 20px;
     font-size: 1.1rem;
     font-weight: bold;
     transition: background 0.3s;
@@ -227,6 +267,14 @@
 :root[theme="midnight"] section.author,
 :root[theme="midnight"] section.tag {
     padding: 30px 0;
+}
+
+:root[theme="midnight"] section.post .content,
+:root[theme="midnight"] section.author .content,
+:root[theme="midnight"] section.tag .content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
 :root[theme="midnight"] section.post > img:first-child {
