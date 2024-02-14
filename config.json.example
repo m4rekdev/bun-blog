@@ -12,7 +12,7 @@
     "templateRefreshInterval": 5,
     "postRefreshInterval": 300,
 
-    "dateString": "MM/dd/yyyy hh:mm tt",
+    "dateFormat": "MM/dd/yyyy hh:mm tt",
 
     "rss": {
         "title": "{{ siteName }}",
