@@ -1,9 +1,9 @@
 ---
-title: Example Post
+title: Newest Post
 coverImage: "{{ baseURL }}/assets/images/example-cover.jpg"
-author: example
+author: third one
 draft: true
-pubDate: "September 28, 2023 7:42:00 PM"
+pubDate: "January 14, 2024 4:35:00 PM"
 editedDate: null
 description: this post shows what bun blog can do
 tags:

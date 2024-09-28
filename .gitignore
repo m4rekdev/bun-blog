@@ -171,11 +171,14 @@ dist
 # IntelliJ based IDEs
 .idea
 
-# project-specific
+# Bun Blog
 package-lock.json
 public/posts/*
+public/authors/*
+public/tags/*
 public/rss.xml
-build/*
+public/index.html
+build
 bun.lockb
-templates/posts/list.html
 config.json
+templates/**/*.html

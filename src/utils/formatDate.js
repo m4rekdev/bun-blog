@@ -1,4 +1,4 @@
-import templates from "./templates.js";
+import { templates } from "./templates.js";
 
 function formatDate (inputDate)  {
     if (!inputDate) return '';
@@ -15,7 +15,7 @@ function formatDate (inputDate)  {
         tt: inputDate.getHours() < 12 ? 'AM' : 'PM'
     };
 
-    return templates.dateString.replace(/yyyy|MM|dd|HH|hh|mm|ss|tt/g, (match) => parts[match]);
+    return templates.dateFormat.replace(/yyyy|MM|dd|HH|hh|mm|ss|tt/g, (match) => parts[match]);
 }
 
 export default formatDate;

@@ -1,22 +1,21 @@
-import { parse } from "url";
 import { join } from 'path';
 import replaceTemplates from "./utils/replaceTemplates.js";
-import templates from "./utils/templates.js";
-import posts from "./utils/posts.js";
+import { templates, loadTemplates } from "./utils/templates.js";
+import parseData from "./utils/parseData.js";
 
-const htmlHeaders = new Headers();
-htmlHeaders.set('Content-Type', 'text/html;charset=utf-8');
+await loadTemplates();
+setInterval(async () => await loadTemplates(), templates.templateRefreshInterval * 1000);
 
 setInterval(async () => {
-    const postsCount = await posts.parse();
-    console.log(`Refreshed ${postsCount} posts!`);
+    const parsedData = await parseData.parse();
+    console.log(`Refreshed ${parsedData.posts} posts, ${parsedData.authors} authors and ${parsedData.tags} tags.`);
 }, templates.postRefreshInterval * 1000);
 
 const server = Bun.serve({
     port: templates.server.port,
     hostname: templates.server.host,
     async fetch(req) {
-        let filePath = "public" + parse(req.url).pathname;
+        let filePath = "public" + new URL(req.url).pathname;
 
         //returns 404 if the user requests index.html specifically
         if (filePath === "public/index.html") return await returnError(404);
@@ -30,27 +29,32 @@ const server = Bun.serve({
         const file = Bun.file(join(import.meta.dir, `../${filePath}`));
         if (!(await file.exists())) return await returnError(404);
 
-        //if it's an html file, replace the variables with templates
-        if (filePath.match(/^(.(.*\.html))*$/)?.length)
-            return new Response(
-                replaceTemplates(await file.text()),
-                { headers: htmlHeaders }
-            );
+        if (filePath.match(/(\.html|\.json|\.js)$/i)?.length) {
+            const fileText = replaceTemplates(await file.text());
+
+            const headers = new Headers();
+            headers.set('Content-Type', file.type);
+
+            return new Response(fileText, { headers });
+        }
 
         return new Response(file);
     },
 });
 
-const postsCount = await posts.parse();
-console.log(`Parsed ${postsCount} posts!`);
+const parsedData = await parseData.parse();
+console.log(`Parsed ${parsedData.posts} posts, ${parsedData.authors} authors and ${parsedData.tags} tags.`);
 
 console.log(`Listening on ${server.hostname}:${server.port}`);
 
 async function returnError(code) {
-    const errorPage = replaceTemplates(templates.errorPages[code]);
+    const errorPage = replaceTemplates(templates.pages.error[code]);
+
+    const headers = new Headers();
+    headers.set('Content-Type', 'text/html; charset=utf-8');
 
     return new Response(
         errorPage,
-        { headers: htmlHeaders, status: code }
+        { headers: headers, status: code }
     );
 }

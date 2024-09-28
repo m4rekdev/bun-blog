@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="shortcut icon" href="{{ siteIcon }}" type="image/x-icon">
+    <meta name="keywords" content="{{ post.tags }}">
+
+    <meta property="og:title" content="{{ post.title }}">
+    <meta property="og:type" content="article" />
+    <meta property="og:image" content="{{ post.coverImage }}">
+    <meta property="og:url" content="{{ baseURL }}/posts/{{ post.id }}">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <meta property="og:description" content="{{ post.description }}">
+    <meta property="og:site_name" content="{{ siteName }}">
+    <meta name="twitter:image:alt" content="{{ post.title }}">
+
+    <title>Tag {{ tag.displayName }} | {{ siteName }}</title>
+    <link rel="stylesheet" href="{{ baseURL }}/assets/css/styles.css" />
+</head>
+
+<body>
+    {{ components.navbar }}
+
+    <section class="header">
+        <div class="info">
+            {{ tag.imageHtml }}
+
+            <div class="text">
+                <h1>Tag {{ tag.displayName }}</h1>
+                <em class="postsCount">{{ tag.postsCount }} posts</em>
+                <div class="content">
+                    {{ tag.content }}
+                </div>
+            </div>
+        </div>
+    </section>
+    <main>
+        <section class="tag">
+            <div class="blogs">
+                {{ tag.postsHtml }}
+            </div>
+        </section>
+    </main>
+
+    <script src="{{ baseURL }}/assets/js/imageLoad.js"></script>
+    <script src="{{ baseURL }}/assets/js/theme.js" type="module"></script>
+</body>
+
+</html>

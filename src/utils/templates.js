@@ -2,11 +2,12 @@ import { join, relative, dirname, basename } from 'path';
 import walk from './walk.js';
 
 const templates = {};
-
-const pkg = await Bun.file(join(import.meta.dir, '../../package.json')).json();
-templates.version = pkg.version;
+const externalTemplates = {};
 
 async function loadTemplates() {
+    const pkg = await Bun.file(join(import.meta.dir, '../../package.json')).json();
+    templates.version = pkg.version;
+
     const configFile = Bun.file(join(import.meta.dir, '../../config.json'));
 
     if (!await configFile.exists()) {
@@ -17,12 +18,24 @@ async function loadTemplates() {
     const config = await configFile.json();
     const templateFiles = await walk(join(import.meta.dir, '../../templates'));
 
+    if (externalTemplates)
+        for (const externalTemplateType of Object.keys(externalTemplates)) templates[externalTemplateType] = externalTemplates[externalTemplateType];
+
     for (const configKey of Object.keys(config)) {
         templates[configKey] = config[configKey];
     }
 
     for await (const templateFile of templateFiles) {
         let templateName = relative(join(import.meta.dir, '../../templates'), templateFile);
+        
+        if (templateName.endsWith('.example')) {
+            const exampleFile = Bun.file(templateFile);
+            const templateFilePath = templateFile.replace(/\.example$/g, '');
+
+            const templateFile2 = Bun.file(templateFilePath);
+            if (!(await templateFile2.exists())) await Bun.write(templateFilePath, exampleFile);
+        }
+
         if (!templateName.endsWith('.html')) continue;
 
         templateName = templateName.substring(0, templateName.length - 5);
@@ -45,7 +58,11 @@ async function loadTemplates() {
     }
 }
 
-await loadTemplates();
-setInterval(async () => await loadTemplates(), 5000);
+async function addExternalTemplate(type, name, content) {
+    if (!externalTemplates?.[type]) externalTemplates[type] = {};
+    externalTemplates[type][name] = content;
 
-export default templates;
+    await loadTemplates();
+}
+
+export { templates, addExternalTemplate, loadTemplates };
