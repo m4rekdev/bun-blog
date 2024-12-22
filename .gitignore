@@ -179,6 +179,5 @@ public/tags/*
 public/rss.xml
 public/index.html
 build
-bun.lockb
 config.json
 templates/**/*.html

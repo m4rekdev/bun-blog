@@ -4,7 +4,7 @@
   "module": "index.js",
   "type": "module",
   "devDependencies": {
-    "bun-types": "latest"
+    "@types/bun": "latest"
   },
   "peerDependencies": {
     "typescript": "^5.0.0"
@@ -16,6 +16,7 @@
     "nodeBuild": "node ./src/utils/node.js run build"
   },
   "dependencies": {
+    "bun": "^1.1.42",
     "dompurify": "^3.0.5",
     "front-matter": "^4.0.2",
     "jsdom": "^22.1.0",
